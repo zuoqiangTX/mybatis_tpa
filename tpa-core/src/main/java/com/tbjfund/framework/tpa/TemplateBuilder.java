@@ -16,8 +16,8 @@ public class TemplateBuilder {
     public final static String MAPPER               = "template.vm";
     public final static String SERVICE_INTERFACE    = "service-interface.vm";
     public final static String SERVICE_IMPL         = "service-impl.vm";
-    public final static String DUBBO_FACADE         = "facade-interface.vm";
-    public final static String DUBBO_IMPL           = "facade-impl.vm";
+    public final static String DUBBO_FACADE         = "dubbo-interface.vm";
+    public final static String DUBBO_IMPL           = "dubbo-impl.vm";
     public final static String DAO_INTERFACE        = "dao-interface.vm";
     public final static String DAO_IMPL             = "dao-impl.vm";
 

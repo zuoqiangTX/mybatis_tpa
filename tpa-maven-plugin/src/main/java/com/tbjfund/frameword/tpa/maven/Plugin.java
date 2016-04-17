@@ -149,11 +149,11 @@ public class Plugin extends AbstractMojo {
         buffer = TemplateBuilder.build(table, TemplateBuilder.DAO_IMPL);
         printFile(buffer, table.getNamespace(), table.getTableName() + "_dao_impl.java");
 
-        //buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_FACADE);
-        //printFile(buffer, table.getNamespace(), table.getTableName() + "_dubbo_facade.java");
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_FACADE);
+        printFile(buffer, table.getNamespace(), table.getTableName() + "_dubbo_facade.java");
 
-        //buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_IMPL);
-        //printFile(buffer, table.getNamespace(), table.getTableName() + "_dubbo_impl.java");
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_IMPL);
+        printFile(buffer, table.getNamespace(), table.getTableName() + "_dubbo_impl.java");
     }
 
     private void printFile(String buffer, String pkg,  String name) throws IOException {

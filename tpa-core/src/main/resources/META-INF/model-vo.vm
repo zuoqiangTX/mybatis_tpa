@@ -1,0 +1,22 @@
+package ${table.namespace}
+##imports
+
+#foreach($column in $table.columns)
+import ${column.fieldType};
+#end
+
+public class ${table.beanName}Pojo{
+
+    #foreach($column in $table.columns)
+    private ${column.columnName} ${column.columnName}
+
+    public ${column.columnName} get${column.columnName}(){
+        return this.${column.columnName}
+    }
+
+    public set${column.columnName}(${column.fieldType} ${column.columnName}){
+        this.${column.columnName} = ${column.columnName};
+    }
+    #end
+
+}
