@@ -9,6 +9,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.context.annotation.ScannedGenericBeanDefinition;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.util.Assert;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -40,9 +41,10 @@ public class ClassPathScanner {
                     table.setNamespace(bean.getBeanClassName());
                     table.setTableName(attr.get("name").toString());
                     table.setTypeAlisName(attr.get("aliasName").toString());
+                    table.setBeanName(bean.getBeanClassName().substring(bean.getBeanClassName().lastIndexOf(".") + 1));
 
                     List<ColumnConfig> columns = new LinkedList<ColumnConfig>();
-                    Class beanClass = Class.forName(bean.getBeanClassName());
+                    Class beanClass = Thread.currentThread().getContextClassLoader().loadClass(bean.getBeanClassName());
                     Field[] fields = beanClass.getDeclaredFields();
                     if (fields != null){
                         for (Field field : fields){
@@ -58,7 +60,7 @@ public class ClassPathScanner {
                                             table.setPrimaryKey(column);
                                         }
 
-                                        check(column);
+                                        check(column, beanClass.getCanonicalName() + field.getName());
                                         columns.add(column);
                                     }
                                 }
@@ -67,7 +69,7 @@ public class ClassPathScanner {
                     }
 
                     table.setColumns(columns);
-                    check(table);
+                    check(table, beanClass.getCanonicalName());
                     tableConfigs.add(table);
                 }
             }
@@ -77,24 +79,21 @@ public class ClassPathScanner {
         return tableConfigs;
     }
 
-    private void check(ColumnConfig column){
-        if (column == null
-                || StringUtils.isEmpty(column.getColumnName())
-                || StringUtils.isEmpty(column.getFieldName())
-                || StringUtils.isEmpty(column.getFieldType())){
-            throw new IllegalArgumentException(column.getColumnName());
-        }
+    private void check(ColumnConfig column, String error){
+        Assert.notNull(column, "@Table " + error);
+        Assert.notNull(column.getColumnName(), "@Table name 不能为空 " + error);
+        Assert.notNull(column.getFieldName(), "@Table fieldName 不能为空 " + error);
+        Assert.notNull(column.getFieldType(), "@Table type 不能为空 " + error);
     }
 
-    private void check(TableConfig table){
-        if (table == null
-                || table.getColumns() == null
-                || table.getColumns().size() == 0
-                || table.getPrimaryKey() == null
-                || StringUtils.isEmpty(table.getTableName())
-                || StringUtils.isEmpty(table.getNamespace())){
-            throw new IllegalArgumentException(table.getTableName());
+    private void check(TableConfig table, String error){
+        Assert.notNull(table, "@Column " + error);
+        if (table.getColumns() != null && table.getColumns().size() > 0){
+            Assert.notNull(table.getPrimaryKey(), "@Column 必须要有主键 " + error);
         }
+        Assert.notNull(table.getTableName(), "@Column name 不能为空 " + error);
+        Assert.notNull(table.getNamespace(), "@Column namespace 不能为空 " + error);
+
     }
 
 }

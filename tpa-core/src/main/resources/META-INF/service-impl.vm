@@ -1,0 +1,42 @@
+package ${table.namespace}
+##imports
+import ${table.namespace}
+import ${table.primaryKey.fieldType}
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface ${table.beanName}Impl implements ${table.beanName}Service{
+
+    @Autowired
+    private ${table.beanName}Dao dao;
+
+	${table.primaryKey.fieldType} getById(${table.primaryKey.fieldType} id){
+        return dao.findByPrimaryKey(id);
+    }
+
+    List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy){
+        return dao.findByExample(example, offset, rows, orderBy);
+    }
+
+    List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows){
+        return dao.findByExample(example, offset, rows);
+    }
+
+    Integer getCount(${table.beanName} example){
+        return dao.findCountByExample(example);
+    }
+
+    Integer insert(${table.beanName} example){
+        return dao.insert(example);
+    }
+
+    Integer deleteById(${table.primaryKey.fieldType} key){
+        return dao.deleteByPrimaryKey(key);
+    }
+
+    Integer updateById(${table.beanName} example){
+        return dao.updateByPrimaryKey(example);
+    }
+
+}

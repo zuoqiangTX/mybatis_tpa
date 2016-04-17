@@ -1,0 +1,25 @@
+package ${table.namespace}
+##imports
+import ${table.namespace}
+import ${table.primaryKey.fieldType}
+import java.util.List;
+import com.tongbanjie.commons.lang.Result;
+
+
+public interface ${table.beanName}Facade{
+
+    Result<${table.primaryKey.fieldType}> getById(${table.primaryKey.fieldType} id);
+
+    Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy);
+
+    Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows);
+
+    Result<Integer> getCount(${table.beanName} example);
+
+    Result<Integer> insert(${table.beanName} example);
+
+    Result<Integer> deleteById(${table.primaryKey.fieldType} key);
+
+    Result<Integer> updateById(${table.beanName} example);
+
+}

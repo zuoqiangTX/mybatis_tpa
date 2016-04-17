@@ -1,0 +1,9 @@
+package ${table.namespace}
+##imports
+import ${table.namespace}
+
+
+public interface ${table.beanName}Dao{
+
+
+}

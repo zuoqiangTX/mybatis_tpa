@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class TableConfig {
 
+    private String beanName;
+
     private String tableName;
 
     private String namespace;
@@ -55,5 +57,13 @@ public class TableConfig {
 
     public void setPrimaryKey(ColumnConfig primaryKey) {
         this.primaryKey = primaryKey;
+    }
+
+    public String getBeanName() {
+        return beanName;
+    }
+
+    public void setBeanName(String beanName) {
+        this.beanName = beanName;
     }
 }

@@ -1,0 +1,23 @@
+package ${table.namespace}
+##imports
+import ${table.namespace}
+import ${table.primaryKey.fieldType}
+
+
+public interface ${table.beanName}Service{
+
+	${table.primaryKey.fieldType} getById(${table.primaryKey.fieldType} id);
+
+    List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy);
+
+    List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows);
+
+    Integer getCount(${table.beanName} example);
+
+    Integer insert(${table.beanName} example);
+
+    Integer deleteById(${table.primaryKey.fieldType} key);
+
+    Integer updateById(${table.beanName} example);
+
+}
