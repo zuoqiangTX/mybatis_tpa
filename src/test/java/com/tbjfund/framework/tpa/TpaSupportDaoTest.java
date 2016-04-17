@@ -40,6 +40,17 @@ public class TpaSupportDaoTest {
     }
 
     @Test
+    public void test_select_example_orderby(){
+        TradeOrder example = new TradeOrder();
+        List<TradeOrder> orders = dao.findByExample(example, 0, 100, new OrderBy("order_id", OrderBy.ASC));
+        if (orders != null){
+            for (TradeOrder order : orders){
+                System.out.println(order);
+            }
+        }
+    }
+
+    @Test
     public void test_select_count(){
         TradeOrder example = new TradeOrder();
         example.setUserId(0);

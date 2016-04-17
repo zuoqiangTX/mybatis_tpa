@@ -48,6 +48,7 @@
                 <include refid="SELECT_WHERE_COLUMNS"/>
             </trim>
             </where>
+            <include refid="SELECT_ORDERBY"/>
             <include refid="SELECT_LIMIE"/>
     </select>
 
@@ -70,6 +71,13 @@
     <sql id="SELECT_LIMIE">
         <if test="offset != null and rows != null">
             LIMIT #{offset} , #{rows}
+        </if>
+    </sql>
+
+    <!-- select orderby -->
+    <sql id="SELECT_ORDERBY">
+        <if test="orderby != null">
+            ORDER BY ${orderby.columnName} ${orderby.type}
         </if>
     </sql>
 

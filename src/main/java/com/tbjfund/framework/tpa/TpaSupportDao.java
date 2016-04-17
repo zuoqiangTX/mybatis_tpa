@@ -37,10 +37,23 @@ public class TpaSupportDao<T, PK> extends SqlSessionDaoSupport {
      * @return
      */
     public List<T> findByExample(T example, Integer offset, Integer rows){
+        return findByExample(example, offset, rows, null);
+    }
+
+    /**
+     * 条件查询
+     * @param example
+     * @param offset
+     * @param rows
+     * @param orderby
+     * @return
+     */
+    public List<T> findByExample(T example, Integer offset, Integer rows, OrderBy orderby){
         Map map = new HashMap();
         map.put("example", example);
         map.put("offset", offset);
         map.put("rows", rows);
+        map.put("orderby", orderby);
         return getSqlSession().selectList(this.namaspace + ".findByExample", map);
     }
 
