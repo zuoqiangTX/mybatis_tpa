@@ -135,7 +135,7 @@ public class Plugin extends AbstractMojo {
 
     private void printMapper(TableConfig table) throws IOException {
         String buffer = TemplateBuilder.build(table, TemplateBuilder.MAPPER);
-        printFile(xmlFormat.formatXML(buffer), table.getNamespace(), table.getTableName() + ".xml");
+        printFile(buffer, table.getNamespace(), table.getTableName() + ".xml");
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.SERVICE_INTERFACE);
         printFile(buffer, table.getNamespace(), table.getTableName() + "_service_interface.java");

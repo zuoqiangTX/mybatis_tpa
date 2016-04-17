@@ -1,8 +1,9 @@
-package ${table.namespace}
+package ${table.packageName}.model
+
 ##imports
 
 #foreach($column in $table.columns)
-import ${column.fieldType};
+import ${column.javaType};
 #end
 
 public class ${table.beanName}Pojo{
@@ -14,7 +15,7 @@ public class ${table.beanName}Pojo{
         return this.${column.columnName}
     }
 
-    public set${column.columnName}(${column.fieldType} ${column.columnName}){
+    public set${column.columnName}(${column.javaType} ${column.columnName}){
         this.${column.columnName} = ${column.columnName};
     }
     #end

@@ -1,7 +1,8 @@
-package ${table.namespace}
+package ${table.packageName}.facade.impl
+
 ##imports
 import ${table.namespace}
-import ${table.primaryKey.fieldType}
+import ${table.primaryKey.javaType}
 import java.util.List;
 import com.tongbanjie.commons.lang.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public interface ${table.beanName}FacadeImpl extends ${table.beanName}Facade{
 
     private Logger logger = LoggerFactory.getLogger(${table.beanName}FacadeImpl.class);
 
-    Result<${table.primaryKey.fieldType}> getById(${table.primaryKey.fieldType} id){
+    Result<${table.primaryKey.SimpleJavaType}> getById(${table.primaryKey.SimpleJavaType} id){
 
         Result<${table.beanName}> result = null;
     }
@@ -28,7 +29,7 @@ public interface ${table.beanName}FacadeImpl extends ${table.beanName}Facade{
 
     Result<Integer> insert(${table.beanName} example);
 
-    Result<Integer> deleteById(${table.primaryKey.fieldType} key);
+    Result<Integer> deleteById(${table.primaryKey.SimpleJavaType} key);
 
     Result<Integer> updateById(${table.beanName} example);
 

@@ -53,7 +53,7 @@ public class URIResourceLoader extends ClasspathResourceLoader {
         try {
             org.springframework.core.io.Resource[] res = resourcePatternResolver.getResources("classpath*:/META-INF/" + name);
             if (res != null && res.length == 1){
-                result = res[0].getInputStream();
+                result = new VTLIndentationGlobber(res[0].getInputStream());
             }
         } catch (Exception fnfe) {
             throw (ResourceNotFoundException) ExceptionUtils.createWithCause(ResourceNotFoundException.class, "problem with template: " + name, fnfe);

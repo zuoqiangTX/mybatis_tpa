@@ -7,6 +7,9 @@ import java.util.List;
  */
 public class TableConfig {
 
+
+    private String packageName;
+
     private String beanName;
 
     private String tableName;
@@ -65,5 +68,13 @@ public class TableConfig {
 
     public void setBeanName(String beanName) {
         this.beanName = beanName;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
 }

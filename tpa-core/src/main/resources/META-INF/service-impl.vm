@@ -1,7 +1,8 @@
-package ${table.namespace}
+package ${table.packageName}.service.impl
+
 ##imports
 import ${table.namespace}
-import ${table.primaryKey.fieldType}
+import ${table.primaryKey.javaType}
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ public interface ${table.beanName}Impl implements ${table.beanName}Service{
     @Autowired
     private ${table.beanName}Dao dao;
 
-	${table.primaryKey.fieldType} getById(${table.primaryKey.fieldType} id){
+	${table.primaryKey.SimpleJavaType} getById(${table.primaryKey.SimpleJavaType} id){
         return dao.findByPrimaryKey(id);
     }
 
@@ -31,7 +32,7 @@ public interface ${table.beanName}Impl implements ${table.beanName}Service{
         return dao.insert(example);
     }
 
-    Integer deleteById(${table.primaryKey.fieldType} key){
+    Integer deleteById(${table.primaryKey.SimpleJavaType} key){
         return dao.deleteByPrimaryKey(key);
     }
 

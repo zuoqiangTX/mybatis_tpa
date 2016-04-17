@@ -4,7 +4,7 @@ import com.tbjfund.framework.tpa.annotation.Column;
 import com.tbjfund.framework.tpa.annotation.Table;
 import com.tbjfund.framework.tpa.config.ColumnConfig;
 import com.tbjfund.framework.tpa.config.TableConfig;
-import org.apache.commons.lang.StringUtils;
+import com.tbjfund.framework.tpa.utils.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.context.annotation.ScannedGenericBeanDefinition;
@@ -42,6 +42,7 @@ public class ClassPathScanner {
                     table.setTableName(attr.get("name").toString());
                     table.setTypeAlisName(attr.get("aliasName").toString());
                     table.setBeanName(bean.getBeanClassName().substring(bean.getBeanClassName().lastIndexOf(".") + 1));
+                    table.setPackageName(StringUtils.getPackageName(table.getNamespace()));
 
                     List<ColumnConfig> columns = new LinkedList<ColumnConfig>();
                     Class beanClass = Thread.currentThread().getContextClassLoader().loadClass(bean.getBeanClassName());
@@ -53,9 +54,8 @@ public class ClassPathScanner {
                                 for (Annotation an : annotations){
                                     if (an instanceof Column){
                                         ColumnConfig column = new ColumnConfig(((Column) an).isPrimaryKey(), ((Column) an).name(), field.getName());
-
-                                        column.setFieldType(field.getType().getCanonicalName());
-
+                                        column.setJavaType(field.getType().getCanonicalName());
+                                        column.setSimpleJavaType(StringUtils.getSimpleName(column.getJavaType()));
                                         if(column.isPrimaryKey()){
                                             table.setPrimaryKey(column);
                                         }
@@ -83,7 +83,7 @@ public class ClassPathScanner {
         Assert.notNull(column, "@Table " + error);
         Assert.notNull(column.getColumnName(), "@Table name 不能为空 " + error);
         Assert.notNull(column.getFieldName(), "@Table fieldName 不能为空 " + error);
-        Assert.notNull(column.getFieldType(), "@Table type 不能为空 " + error);
+        Assert.notNull(column.getJavaType(), "@Table type 不能为空 " + error);
     }
 
     private void check(TableConfig table, String error){

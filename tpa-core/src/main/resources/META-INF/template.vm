@@ -26,7 +26,7 @@
     </sql>
 
     <!-- select -->
-    <select id="findByPrimaryKey" parameterType="${table.primaryKey.fieldType}" resultMap="BaseResultMap">
+    <select id="findByPrimaryKey" parameterType="${table.primaryKey.javaType}" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List" />
         from
@@ -52,7 +52,7 @@
     <!-- select where columns -->
     <sql id="SELECT_WHERE_COLUMNS">
         #foreach($column in $table.columns)
-            #if($column.fieldType == 'java.lang.String')
+            #if($column.javaType == 'java.lang.String')
                 #set($test="example." + ${column.fieldName}+" != null and example."+${column.fieldName}+" != '' ")
             #else
                 #set($test= "example." + ${column.fieldName}+" != null")
@@ -108,7 +108,7 @@
     </insert>
 
     <!-- delete -->
-    <delete id="deleteByPrimaryKey" parameterType="${table.primaryKey.fieldType}">
+    <delete id="deleteByPrimaryKey" parameterType="${table.primaryKey.javaType}">
         delete from ${table.tableName} where ${table.primaryKey.columnName} = #{${table.primaryKey.fieldName}}
     </delete>
 
@@ -118,7 +118,7 @@
         <set>
             #foreach($column in $table.columns)
                 #if(!$column.isPrimaryKey())
-                    #if($column.fieldType == 'java.lang.String')
+                    #if($column.javaType == 'java.lang.String')
                         #set($updateTest=${column.fieldName}+" != null and "+${column.fieldName}+" != '' ")
                     #else
                         #set($updateTest=${column.fieldName}+" != null")
