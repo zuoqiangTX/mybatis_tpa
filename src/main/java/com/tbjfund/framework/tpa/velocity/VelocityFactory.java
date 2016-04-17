@@ -32,7 +32,9 @@ public class VelocityFactory {
 	
 	public static VelocityFactory getInstances(){
 		if(instances == null){
-			instances = new VelocityFactory();
+            synchronized (VelocityFactory.class){
+			    instances = new VelocityFactory();
+            }
 		}
 		return instances;
 	}
