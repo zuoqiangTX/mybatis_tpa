@@ -1,7 +1,6 @@
 package com.tbjfund.framework.tpa;
 
 import com.tbjfund.framework.tpa.config.TableConfig;
-import com.tbjfund.framework.tpa.mybatis.InMemoryMapperResource;
 import com.tbjfund.framework.tpa.scan.ClassPathScanner;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.slf4j.Logger;

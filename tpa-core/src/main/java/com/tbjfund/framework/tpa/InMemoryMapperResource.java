@@ -1,4 +1,4 @@
-package com.tbjfund.framework.tpa.mybatis;
+package com.tbjfund.framework.tpa;
 
 import org.springframework.security.util.InMemoryResource;
 
