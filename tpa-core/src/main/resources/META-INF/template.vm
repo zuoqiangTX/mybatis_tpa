@@ -1,0 +1,139 @@
+#####################################
+##文件名命名规则：MybatisSqlMap_方言.vm
+#####################################
+#set($start="{")
+#set($end="}")
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  本文档由TotalBuilder自动生成   dao不使用接口    -->
+<mapper namespace="tpa.${table.namespace}">
+
+    <!-- result map -->
+    <resultMap id="BaseResultMap" type="${table.namespace}">
+        #foreach($column in $table.columns)
+            #if($column.isPrimaryKey())
+                ###jdbcType="${field.jdbcTypeName}"  javaType="${field.javaType}"
+                <id column="${column.columnName}"  property="${column.fieldName}"/>
+            #else
+                <result column="${column.columnName}"  property="${column.fieldName}"/>
+            #end
+        #end
+    </resultMap>
+
+    <!-- select columns -->
+    <sql id="Base_Column_List">
+        #foreach($column in $table.columns)
+            ${column.columnName}#if( $foreach.hasNext ),#end
+
+        #end
+    </sql>
+
+    <!-- select -->
+    <select id="findByPrimaryKey" parameterType="${table.primaryKey.fieldType}" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from
+            ${table.tableName}
+        where
+            ${table.primaryKey.columnName} = #{${table.primaryKey.fieldName}}
+    </select>
+
+    <!-- select by example -->
+    <select id="findByExample" parameterType="map" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from ${table.tableName}
+            <where>
+            <trim prefix="" prefixOverrides="and" suffix="">
+                <include refid="SELECT_WHERE_COLUMNS"/>
+            </trim>
+            </where>
+            <include refid="SELECT_ORDERBY"/>
+            <include refid="SELECT_LIMIE"/>
+    </select>
+
+    <!-- select where columns -->
+    <sql id="SELECT_WHERE_COLUMNS">
+        #foreach($column in $table.columns)
+            #if($column.fieldType == 'java.lang.String')
+                #set($test="example." + ${column.fieldName}+" != null and example."+${column.fieldName}+" != '' ")
+            #else
+                #set($test= "example." + ${column.fieldName}+" != null")
+            #end
+            <if test="$test">
+                #set($value="#{example."+$column.fieldName+"}")
+                and ${column.columnName}=${value}
+            </if>
+        #end
+    </sql>
+
+    <!-- select limit -->
+    <sql id="SELECT_LIMIE">
+        <if test="offset != null and rows != null">
+            LIMIT #{offset} , #{rows}
+        </if>
+    </sql>
+
+    <!-- select orderby -->
+    <sql id="SELECT_ORDERBY">
+        <if test="orderby != null">
+            ORDER BY ${orderby.columnName} ${orderby.type}
+        </if>
+    </sql>
+
+    <!-- select count by example -->
+    <select id="findCountByExample" parameterType="map" resultType="int">
+        select
+            count(1)
+        from ${table.tableName}
+        <where>
+            <trim prefix="" prefixOverrides="and" suffix="">
+                <include refid="SELECT_WHERE_COLUMNS"/>
+            </trim>
+        </where>
+    </select>
+
+    <!--insert -->
+    <insert id="insert" parameterType="${table.namespace}" useGeneratedKeys="true" keyProperty="${table.primaryKey.fieldName}">
+        INSERT INTO ${table.tableName}
+        (
+            #foreach($column in $table.columns)
+                ${column.columnName}#if( $foreach.hasNext ),#end
+
+            #end
+        )VALUES(
+            #foreach($column in $table.columns)
+                #set($value="#{"+$column.fieldName+"}")
+                ${value}#if( $foreach.hasNext ),#end
+
+            #end
+        )
+    </insert>
+
+    <!-- delete -->
+    <delete id="deleteByPrimaryKey" parameterType="${table.primaryKey.fieldType}">
+        delete from ${table.tableName} where ${table.primaryKey.columnName} = #{${table.primaryKey.fieldName}}
+    </delete>
+
+    <!-- update -->
+    <update id="updateByPrimaryKey" parameterType="${table.namespace}">
+        update ${table.tableName}
+        <set>
+            #foreach($column in $table.columns)
+                #if(!$column.isPrimaryKey())
+                    #if($column.fieldType == 'java.lang.String')
+                        #set($updateTest=${column.fieldName}+" != null and "+${column.fieldName}+" != '' ")
+                    #else
+                        #set($updateTest=${column.fieldName}+" != null")
+                    #end
+                    <if test="$updateTest">
+                        #set($value="#{"+$column.fieldName+"}")
+                        ${column.columnName}=${value}#if( $foreach.hasNext ),#end
+                    </if>
+                #end
+            #end
+        </set>
+        where ${table.primaryKey.columnName} = #{${table.primaryKey.fieldName}}
+    </update>
+
+</mapper>
