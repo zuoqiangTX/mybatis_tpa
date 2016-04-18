@@ -52,15 +52,15 @@ public class Plugin extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
 
-        getLog().info("[INFO] ------------------------------------------------------------------------");
-        getLog().info("[INFO] 开始处理 @Table @Column 注解");
+        getLog().info(" ------------------------------------------------------------------------");
+        getLog().info(" 开始处理 @Table @Column 注解");
 
         ClassLoader befor = Thread.currentThread().getContextClassLoader();
         try {
             printRoot = getPrintRoot();
-            getLog().info("[INFO] 输出目录: " + printRoot);
-            getLog().info("[INFO] 类路径:" + classpathElements);
-            getLog().info("[INFO] ------------------------------------------------------------------------");
+            getLog().info(" 输出目录: " + printRoot);
+            getLog().info(" 类路径:" + classpathElements);
+            getLog().info(" ------------------------------------------------------------------------");
 
             URL[] urls = new URL[classpathElements.size()];
 
@@ -101,7 +101,7 @@ public class Plugin extends AbstractMojo {
         Properties prop = System.getProperties();
         String os = prop.getProperty("os.name");
         String path = null;
-        System.out.println(os);
+        getLog().info(" 操作系统:" + os);
         if (os.toUpperCase().indexOf("WIN") != -1){
             path = "c:" + File.separator;
         }else {
