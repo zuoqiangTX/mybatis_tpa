@@ -1,12 +1,13 @@
-package ${table.packageName}.facade.impl
+package ${table.packageName}.facade.impl;
 
 ##imports
-import ${table.namespace}
-import ${table.primaryKey.javaType}
+import ${table.namespace};
+import ${table.primaryKey.javaType};
 import java.util.List;
 import com.tongbanjie.commons.lang.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.tbjfund.framework.tpa.OrderBy;
 
 @Service
 public interface ${table.beanName}FacadeImpl extends ${table.beanName}Facade{

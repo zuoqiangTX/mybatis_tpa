@@ -1,19 +1,19 @@
 package com.tbjfund.framework;
 
 import com.tbjfund.framework.tpa.annotation.Column;
+import com.tbjfund.framework.tpa.annotation.PrimaryKey;
 import com.tbjfund.framework.tpa.annotation.Table;
 import com.tbjfund.framework.tpa.annotation.Transient;
 
 @Table(name = "t_order_0", aliasName = "TOrder")
 public class TradeOrder {
 
-    @Column(name = "order_id", isPrimaryKey = true)
+    @PrimaryKey(name = "order_id")
 	private Integer orderId;
 
     @Column(name = "user_id")
 	private Integer userId;
 
-    @Column(name = "product_id")
     @Transient
 	private Integer productId;
 

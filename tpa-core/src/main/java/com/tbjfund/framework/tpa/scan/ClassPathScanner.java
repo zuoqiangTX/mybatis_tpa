@@ -1,6 +1,7 @@
 package com.tbjfund.framework.tpa.scan;
 
 import com.tbjfund.framework.tpa.annotation.Column;
+import com.tbjfund.framework.tpa.annotation.PrimaryKey;
 import com.tbjfund.framework.tpa.annotation.Table;
 import com.tbjfund.framework.tpa.annotation.Transient;
 import com.tbjfund.framework.tpa.config.ColumnConfig;
@@ -40,10 +41,10 @@ public class ClassPathScanner {
                     TableConfig table = new TableConfig();
                     Map<String, Object> attr = ((ScannedGenericBeanDefinition) bean).getMetadata().getAnnotationAttributes(Table.class.getCanonicalName());
                     table.setNamespace(bean.getBeanClassName());
-                    table.setTableName(attr.get("name").toString());
                     table.setTypeAlisName(attr.get("aliasName").toString());
                     table.setBeanName(bean.getBeanClassName().substring(bean.getBeanClassName().lastIndexOf(".") + 1));
                     table.setPackageName(StringUtils.getPackageName(table.getNamespace()));
+                    table.setTableName(formatTableName(attr.get("name").toString(), table.getBeanName()));
 
                     List<ColumnConfig> columns = new LinkedList<ColumnConfig>();
                     Class beanClass = Thread.currentThread().getContextClassLoader().loadClass(bean.getBeanClassName());
@@ -58,13 +59,19 @@ public class ClassPathScanner {
                             if (annotations != null){
                                 for (Annotation an : annotations){
                                     if (an instanceof Column){
-                                        ColumnConfig column = new ColumnConfig(((Column) an).isPrimaryKey(), formatColumnName((Column) an, field), field.getName());
+                                        ColumnConfig column = new ColumnConfig(false, formatColumnName(((Column) an).name(), field), field.getName());
                                         column.setJavaType(field.getType().getCanonicalName());
                                         column.setSimpleJavaType(StringUtils.getSimpleName(column.getJavaType()));
-                                        if(column.isPrimaryKey()){
-                                            table.setPrimaryKey(column);
-                                        }
-
+                                        check(column, beanClass.getCanonicalName() + field.getName());
+                                        columns.add(column);
+                                        touch = true;
+                                        break;
+                                    }else if (an instanceof PrimaryKey){
+                                        ColumnConfig column = new ColumnConfig(true, formatColumnName(((PrimaryKey) an).name(), field), field.getName());
+                                        column.setJavaType(field.getType().getCanonicalName());
+                                        column.setSimpleJavaType(StringUtils.getSimpleName(column.getJavaType()));
+                                        // key
+                                        table.setPrimaryKey(column);
                                         check(column, beanClass.getCanonicalName() + field.getName());
                                         columns.add(column);
                                         touch = true;
@@ -100,11 +107,18 @@ public class ClassPathScanner {
      * @param field
      * @return
      */
-    private String formatColumnName(Column column, Field field){
-        if (column != null && column.name() != null && column.name().length() != 0){
-            return column.name();
+    private String formatColumnName(String column, Field field){
+        if (column != null && column.length() != 0){
+            return column;
         }
         return StringUtils.getNormalName(field.getName());
+    }
+
+    private String formatTableName(String tableName, String beanName){
+        if (tableName != null && tableName.length() != 0){
+            return tableName;
+        }
+        return StringUtils.getNormalName(beanName);
     }
 
     /**
@@ -134,7 +148,7 @@ public class ClassPathScanner {
     private void check(TableConfig table, String error){
         Assert.notNull(table, "@Column " + error);
         if (table.getColumns() != null && table.getColumns().size() > 0){
-            Assert.notNull(table.getPrimaryKey(), "@Column 必须要有主键 " + error);
+            Assert.notNull(table.getPrimaryKey(), "@PrimaryKey 必须要有主键 " + error);
         }
         Assert.notNull(table.getTableName(), "@Column name 不能为空 " + error);
         Assert.notNull(table.getNamespace(), "@Column namespace 不能为空 " + error);

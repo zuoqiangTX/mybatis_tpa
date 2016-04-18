@@ -10,8 +10,12 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Column {
+public @interface PrimaryKey {
 
     String name() default "";
+
+    boolean isAutoKey() default false;
+
+    boolean isPrimaryKey() default false;
 
 }

@@ -138,22 +138,22 @@ public class Plugin extends AbstractMojo {
         printFile(buffer, table.getNamespace(), table.getTableName() + ".xml");
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.SERVICE_INTERFACE);
-        printFile(buffer, table.getNamespace(), table.getTableName() + "_service_interface.java");
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "Service.java");
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.SERVICE_IMPL);
-        printFile(buffer, table.getNamespace(), table.getTableName() + "_service_impl.java");
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "ServiceImpl.java");
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DAO_INTERFACE);
-        printFile(buffer, table.getNamespace(), table.getTableName() + "_dao_interface.java");
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "Dao.java");
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DAO_IMPL);
-        printFile(buffer, table.getNamespace(), table.getTableName() + "_dao_impl.java");
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DaoImpl.java");
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_FACADE);
-        printFile(buffer, table.getNamespace(), table.getTableName() + "_dubbo_facade.java");
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "Facade.java");
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_IMPL);
-        printFile(buffer, table.getNamespace(), table.getTableName() + "_dubbo_impl.java");
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "FacadeImpl.java");
     }
 
     private void printFile(String buffer, String pkg,  String name) throws IOException {

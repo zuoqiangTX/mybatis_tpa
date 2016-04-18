@@ -44,6 +44,7 @@ public class StringUtils {
 
     /**
      * userId ==> user_id
+     * UserId ==> user_id
      * @param s
      * @return
      */
@@ -55,12 +56,15 @@ public class StringUtils {
         for (int i = 0; i < s.length(); i++) {
             Character c = s.charAt(i);
             if (Character.isUpperCase(c)){
-                sb.append("_" + Character.toLowerCase(c));
+                if (sb.length() == 0){
+                    sb.append(Character.toLowerCase(c));
+                }else {
+                    sb.append("_" + Character.toLowerCase(c));
+                }
             }else {
                 sb.append(c);
             }
         }
         return sb.toString();
     }
-
 }

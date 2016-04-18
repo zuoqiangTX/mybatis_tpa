@@ -1,10 +1,11 @@
-package ${table.packageName}.facade
+package ${table.packageName}.facade;
 
 ##imports
-import ${table.namespace}
-import ${table.primaryKey.javaType}
+import ${table.namespace};
+import ${table.primaryKey.javaType};
 import java.util.List;
 import com.tongbanjie.commons.lang.Result;
+import com.tbjfund.framework.tpa.OrderBy;
 
 
 public interface ${table.beanName}Facade{

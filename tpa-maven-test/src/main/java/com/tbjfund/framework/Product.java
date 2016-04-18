@@ -1,15 +1,14 @@
 package com.tbjfund.framework;
 
-import com.tbjfund.framework.tpa.annotation.Column;
+import com.tbjfund.framework.tpa.annotation.PrimaryKey;
 import com.tbjfund.framework.tpa.annotation.Table;
 
-@Table(name = "product", aliasName = "Product")
+@Table(name = "product")
 public class Product {
 
-    @Column(name = "id", isPrimaryKey = true)
+    @PrimaryKey
 	private Integer id;
 
-    @Column(name = "name")
 	private String name;
 
     public Integer getId() {
