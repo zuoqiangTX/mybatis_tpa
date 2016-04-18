@@ -1,12 +1,12 @@
-package ${table.packageName}.dao.impl
+package ${table.packageName}.dao.impl;
 
 ##imports
-import ${table.namespace}
+import ${table.namespace};
 import org.springframework.stereotype.Repository;
 import com.tbjfund.framework.tpa.TpaSupportDao;
 
 @Repository
-public interface ${table.beanName}DaoImpl extends TpaSupportDao<${table.beanName}, ${table.primaryKey.SimpleJavaType}> {
+public class ${table.beanName}DaoImpl extends TpaSupportDao<${table.beanName}, ${table.primaryKey.SimpleJavaType}> {
 
 
 }

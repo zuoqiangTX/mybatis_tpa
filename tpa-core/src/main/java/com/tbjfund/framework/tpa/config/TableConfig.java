@@ -7,14 +7,22 @@ import java.util.List;
  */
 public class TableConfig {
 
+    // com.tbjfund.framework
     private String packageName;
 
+    // UserManager
     private String beanName;
 
+    // userManager
+    private String injectName;
+
+    // user_manager
     private String tableName;
 
+    // com.tbjfund.framework.UserManager
     private String namespace;
 
+    // @Table(aliasName='')
     private String typeAlisName;
 
     private ColumnConfig primaryKey;
@@ -75,5 +83,13 @@ public class TableConfig {
 
     public void setPackageName(String packageName) {
         this.packageName = packageName;
+    }
+
+    public String getInjectName() {
+        return injectName;
+    }
+
+    public void setInjectName(String injectName) {
+        this.injectName = injectName;
     }
 }

@@ -1,43 +1,52 @@
-package ${table.packageName}.service.impl
+package ${table.packageName}.service.impl;
 
 ##imports
-import ${table.namespace}
-import ${table.primaryKey.javaType}
+import ${table.namespace};
+import ${table.primaryKey.javaType};
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import com.tbjfund.framework.tpa.OrderBy;
 
 @Service
-public interface ${table.beanName}Impl implements ${table.beanName}Service{
+public class ${table.beanName}ServiceImpl implements ${table.beanName}Service{
 
     @Autowired
-    private ${table.beanName}Dao dao;
+    private ${table.beanName}DaoImpl ${table.injectName}Dao;
 
-	${table.primaryKey.SimpleJavaType} getById(${table.primaryKey.SimpleJavaType} id){
-        return dao.findByPrimaryKey(id);
+    @Autowired
+    public ${table.primaryKey.SimpleJavaType} getById(${table.primaryKey.SimpleJavaType} id){
+        return ${table.injectName}Dao.findByPrimaryKey(id);
     }
 
-    List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy){
-        return dao.findByExample(example, offset, rows, orderBy);
+    @Autowired
+    public List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy){
+        return ${table.injectName}Dao.findByExample(example, offset, rows, orderBy);
     }
 
-    List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows){
-        return dao.findByExample(example, offset, rows);
+    @Autowired
+    public List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows){
+        return ${table.injectName}Dao.findByExample(example, offset, rows);
     }
 
-    Integer getCount(${table.beanName} example){
-        return dao.findCountByExample(example);
+    @Autowired
+    public Integer getCount(${table.beanName} example){
+        return ${table.injectName}Dao.findCountByExample(example);
     }
 
-    Integer insert(${table.beanName} example){
-        return dao.insert(example);
+    @Autowired
+    public Integer insert(${table.beanName} example){
+        return ${table.injectName}Dao.insert(example);
     }
 
-    Integer deleteById(${table.primaryKey.SimpleJavaType} key){
-        return dao.deleteByPrimaryKey(key);
+    @Autowired
+    public Integer deleteById(${table.primaryKey.SimpleJavaType} key){
+        return ${table.injectName}Dao.deleteByPrimaryKey(key);
     }
 
-    Integer updateById(${table.beanName} example){
-        return dao.updateByPrimaryKey(example);
+    @Autowired
+    public Integer updateById(${table.beanName} example){
+        return ${table.injectName}Dao.updateByPrimaryKey(example);
     }
 
 }

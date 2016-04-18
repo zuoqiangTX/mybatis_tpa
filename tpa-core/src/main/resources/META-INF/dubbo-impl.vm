@@ -13,12 +13,11 @@ import com.tbjfund.framework.tpa.OrderBy;
 public interface ${table.beanName}FacadeImpl extends ${table.beanName}Facade{
 
     @Autowired
-    private ${table.beanName}Service service;
+    private ${table.beanName}Service ${table.injectName}Service;
 
     private Logger logger = LoggerFactory.getLogger(${table.beanName}FacadeImpl.class);
 
-    Result<${table.primaryKey.SimpleJavaType}> getById(${table.primaryKey.SimpleJavaType} id){
-
+    Result<${table.beanName}> getById(${table.primaryKey.SimpleJavaType} id){
         Result<${table.beanName}> result = null;
     }
 

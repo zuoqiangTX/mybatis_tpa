@@ -45,6 +45,7 @@ public class ClassPathScanner {
                     table.setBeanName(bean.getBeanClassName().substring(bean.getBeanClassName().lastIndexOf(".") + 1));
                     table.setPackageName(StringUtils.getPackageName(table.getNamespace()));
                     table.setTableName(formatTableName(attr.get("name").toString(), table.getBeanName()));
+                    table.setInjectName(StringUtils.getFistLowName(table.getBeanName()));
 
                     List<ColumnConfig> columns = new LinkedList<ColumnConfig>();
                     Class beanClass = Thread.currentThread().getContextClassLoader().loadClass(bean.getBeanClassName());

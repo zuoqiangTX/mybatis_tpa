@@ -1,8 +1,10 @@
-package ${table.packageName}.service
+package ${table.packageName}.service;
 
 ##imports
-import ${table.namespace}
-import ${table.primaryKey.javaType}
+import ${table.namespace};
+import ${table.primaryKey.javaType};
+import java.util.List;
+import com.tbjfund.framework.tpa.OrderBy;
 
 
 public interface ${table.beanName}Service{
