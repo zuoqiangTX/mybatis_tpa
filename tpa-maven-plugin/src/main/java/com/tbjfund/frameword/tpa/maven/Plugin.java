@@ -43,7 +43,7 @@ public class Plugin extends AbstractMojo {
     @Parameter(property = "maven.main.skip")
     private boolean skipMain;
 
-    private String scanPackage = "com.tbjfund.framework";
+    private String scanPackage = "com.tbjfund";
 
     private String printRoot;
 
