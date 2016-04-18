@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class TableConfig {
 
-
     private String packageName;
 
     private String beanName;

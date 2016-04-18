@@ -2,6 +2,7 @@ package com.tbjfund.framework;
 
 import com.tbjfund.framework.tpa.annotation.Column;
 import com.tbjfund.framework.tpa.annotation.Table;
+import com.tbjfund.framework.tpa.annotation.Transient;
 
 @Table(name = "t_order_0", aliasName = "TOrder")
 public class TradeOrder {
@@ -13,9 +14,9 @@ public class TradeOrder {
 	private Integer userId;
 
     @Column(name = "product_id")
+    @Transient
 	private Integer productId;
 
-    @Column(name = "product_name")
 	private String productName;
 
     @Column(name = "status")

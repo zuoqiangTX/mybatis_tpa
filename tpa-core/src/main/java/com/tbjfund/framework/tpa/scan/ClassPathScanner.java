@@ -2,6 +2,7 @@ package com.tbjfund.framework.tpa.scan;
 
 import com.tbjfund.framework.tpa.annotation.Column;
 import com.tbjfund.framework.tpa.annotation.Table;
+import com.tbjfund.framework.tpa.annotation.Transient;
 import com.tbjfund.framework.tpa.config.ColumnConfig;
 import com.tbjfund.framework.tpa.config.TableConfig;
 import com.tbjfund.framework.tpa.utils.StringUtils;
@@ -50,10 +51,14 @@ public class ClassPathScanner {
                     if (fields != null){
                         for (Field field : fields){
                             Annotation[] annotations = field.getAnnotations();
+                            if (isTransient(annotations)){
+                                continue;
+                            }
+                            boolean touch = false;
                             if (annotations != null){
                                 for (Annotation an : annotations){
                                     if (an instanceof Column){
-                                        ColumnConfig column = new ColumnConfig(((Column) an).isPrimaryKey(), ((Column) an).name(), field.getName());
+                                        ColumnConfig column = new ColumnConfig(((Column) an).isPrimaryKey(), formatColumnName((Column) an, field), field.getName());
                                         column.setJavaType(field.getType().getCanonicalName());
                                         column.setSimpleJavaType(StringUtils.getSimpleName(column.getJavaType()));
                                         if(column.isPrimaryKey()){
@@ -62,8 +67,18 @@ public class ClassPathScanner {
 
                                         check(column, beanClass.getCanonicalName() + field.getName());
                                         columns.add(column);
+                                        touch = true;
+                                        break;
                                     }
                                 }
+                            }
+                            if (!touch){
+                                // 没有@Column
+                                ColumnConfig column = new ColumnConfig(false, formatColumnName(null, field), field.getName());
+                                column.setJavaType(field.getType().getCanonicalName());
+                                column.setSimpleJavaType(StringUtils.getSimpleName(column.getJavaType()));
+                                check(column, beanClass.getCanonicalName() + field.getName());
+                                columns.add(column);
                             }
                         }
                     }
@@ -77,6 +92,36 @@ public class ClassPathScanner {
             e.printStackTrace();
         }
         return tableConfigs;
+    }
+
+    /**
+     * Column.name == '' ==> field.name
+     * @param column
+     * @param field
+     * @return
+     */
+    private String formatColumnName(Column column, Field field){
+        if (column != null && column.name() != null && column.name().length() != 0){
+            return column.name();
+        }
+        return StringUtils.getNormalName(field.getName());
+    }
+
+    /**
+     * 是否有@Transient
+     * @param annotations
+     * @return
+     */
+    private boolean isTransient(Annotation[] annotations){
+        if (annotations == null || annotations.length == 0){
+            return false;
+        }
+        for (Annotation annotation : annotations){
+            if (annotation instanceof Transient){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void check(ColumnConfig column, String error){
