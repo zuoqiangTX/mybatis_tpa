@@ -1,12 +1,13 @@
 package com.tbjfund.framework.tpa.model;
 
 import com.tbjfund.framework.tpa.annotation.Column;
+import com.tbjfund.framework.tpa.annotation.PrimaryKey;
 import com.tbjfund.framework.tpa.annotation.Table;
 
 @Table(name = "t_order_0", aliasName = "TOrder")
 public class TradeOrder {
 
-    @Column(name = "order_id", isPrimaryKey = true)
+    @PrimaryKey
 	private Integer orderId;
 
     @Column(name = "user_id")
