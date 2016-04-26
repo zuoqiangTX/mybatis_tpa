@@ -43,7 +43,7 @@ public class Columns_List implements HttpController {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + schema + "?useUnicode=true&characterEncoding=gbk"
+            Connection connection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + schema + "?useUnicode=true&characterEncoding=utf-8"
                     , userName, password);
             TableConfig tableConfig = getTable(connection, table);
             connection.close();

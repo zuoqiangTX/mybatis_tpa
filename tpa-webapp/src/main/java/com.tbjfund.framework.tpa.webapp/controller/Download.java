@@ -2,8 +2,10 @@ package com.tbjfund.framework.tpa.webapp.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.tbjfund.framework.tpa.TemplateBuilder;
+import com.tbjfund.framework.tpa.config.ColumnConfig;
 import com.tbjfund.framework.tpa.config.TableConfig;
 import com.tbjfund.framework.tpa.webapp.HttpController;
+import org.apache.commons.lang.StringUtils;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipOutputStream;
 import sun.misc.BASE64Decoder;
@@ -15,6 +17,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedOutputStream;
 
@@ -30,6 +33,29 @@ public class Download implements HttpController {
         BASE64Decoder decoder = new BASE64Decoder();
         tableConfigJson = new String(decoder.decodeBuffer(tableConfigJson), "utf-8");
         TableConfig tableConfig = JSON.parseObject(tableConfigJson, TableConfig.class);
+
+        String beanName = req.getParameter("JavaTypeName");
+        if (notBlank(beanName)){
+            tableConfig.setBeanName(beanName);
+            tableConfig.setInjectName(com.tbjfund.framework.tpa.utils.StringUtils.getFistLowName(beanName));
+        }
+
+        List<ColumnConfig> columnConfigs = tableConfig.getColumns();
+        if (columnConfigs != null){
+            for (ColumnConfig c : columnConfigs){
+                String javaFieldName = req.getParameter(c.getFieldName()+".javaName");
+                String comment = req.getParameter(c.getFieldName()+".comment");
+                if (notBlank(javaFieldName)){
+                    c.setFieldName(javaFieldName);
+                }
+                if (notBlank(comment)){
+                    c.setComment(comment);
+                }
+                if (c.isPrimaryKey()){
+                    tableConfig.setPrimaryKey(c);
+                }
+            }
+        }
 
         resp.setContentType("application/octet-stream");
         resp.setHeader("Content-disposition", "attachment;filename=\"" + tableConfig.getNamespace() + ".zip\"");
@@ -74,5 +100,9 @@ public class Download implements HttpController {
         ZipEntry entry = new ZipEntry(name);
         out.putNextEntry(entry);
         out.write(buffer.getBytes());
+    }
+
+    private boolean notBlank(String str){
+        return StringUtils.isNotBlank(str);
     }
 }
