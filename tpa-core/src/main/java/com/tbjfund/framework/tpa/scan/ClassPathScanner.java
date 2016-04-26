@@ -112,14 +112,14 @@ public class ClassPathScanner {
         if (column != null && column.length() != 0){
             return column;
         }
-        return StringUtils.getNormalName(field.getName());
+        return StringUtils.getJdbcName(field.getName());
     }
 
     private String formatTableName(String tableName, String beanName){
         if (tableName != null && tableName.length() != 0){
             return tableName;
         }
-        return StringUtils.getNormalName(beanName);
+        return StringUtils.getJdbcName(beanName);
     }
 
     /**

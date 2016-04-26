@@ -14,37 +14,37 @@ public class ${table.beanName}ServiceImpl implements ${table.beanName}Service{
     @Autowired
     private ${table.beanName}DaoImpl ${table.injectName}Dao;
 
-    @Autowired
-    public ${table.primaryKey.SimpleJavaType} getById(${table.primaryKey.SimpleJavaType} id){
+    @Override
+    public ${table.beanName} getById(${table.primaryKey.SimpleJavaType} id){
         return ${table.injectName}Dao.findByPrimaryKey(id);
     }
 
-    @Autowired
+    @Override
     public List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy){
         return ${table.injectName}Dao.findByExample(example, offset, rows, orderBy);
     }
 
-    @Autowired
+    @Override
     public List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows){
         return ${table.injectName}Dao.findByExample(example, offset, rows);
     }
 
-    @Autowired
+    @Override
     public Integer getCount(${table.beanName} example){
         return ${table.injectName}Dao.findCountByExample(example);
     }
 
-    @Autowired
+    @Override
     public Integer insert(${table.beanName} example){
         return ${table.injectName}Dao.insert(example);
     }
 
-    @Autowired
+    @Override
     public Integer deleteById(${table.primaryKey.SimpleJavaType} key){
         return ${table.injectName}Dao.deleteByPrimaryKey(key);
     }
 
-    @Autowired
+    @Override
     public Integer updateById(${table.beanName} example){
         return ${table.injectName}Dao.updateByPrimaryKey(example);
     }

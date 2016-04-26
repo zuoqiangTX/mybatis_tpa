@@ -9,11 +9,15 @@ public class ColumnConfig {
 
     private String columnName;
 
+    private String columnType;
+
     private String fieldName;
 
     private String javaType;
 
     private String SimpleJavaType;
+
+    private String comment;
 
     public ColumnConfig(boolean isPrimaryKey, String columnName, String fieldName) {
         this.isPrimaryKey = isPrimaryKey;
@@ -24,6 +28,10 @@ public class ColumnConfig {
     public ColumnConfig(String columnName, String fieldName) {
         this.columnName = columnName;
         this.fieldName = fieldName;
+    }
+
+    public ColumnConfig() {
+
     }
 
     public boolean isPrimaryKey() {
@@ -64,5 +72,21 @@ public class ColumnConfig {
 
     public void setSimpleJavaType(String simpleJavaType) {
         SimpleJavaType = simpleJavaType;
+    }
+
+    public String getColumnType() {
+        return columnType;
+    }
+
+    public void setColumnType(String columnType) {
+        this.columnType = columnType;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

@@ -48,7 +48,7 @@ public class StringUtils {
      * @param s
      * @return
      */
-    public static String getNormalName(String s){
+    public static String getJdbcName(String s){
         if (s == null || s.length() == 0){
             return s;
         }
@@ -61,6 +61,37 @@ public class StringUtils {
                 }else {
                     sb.append("_" + Character.toLowerCase(c));
                 }
+            }else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * user_id ==> UserId
+     * @param s
+     * @return
+     */
+    public static String getJavaName(String s){
+        if (s == null || s.length() == 0){
+            return s;
+        }
+        StringBuffer sb = new StringBuffer();
+        boolean nextIsUpcase = false;
+        for (int i = 0; i < s.length(); i++) {
+            Character c = s.charAt(i);
+            if (sb.length() == 0){
+                sb.append(Character.toUpperCase(c));
+                continue;
+            }
+            if ("_".equals(String.valueOf(c))){
+                nextIsUpcase = true;
+                continue;
+            }
+            if (nextIsUpcase){
+                sb.append(Character.toUpperCase(c));
+                nextIsUpcase = false;
             }else {
                 sb.append(c);
             }

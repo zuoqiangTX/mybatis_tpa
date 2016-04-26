@@ -10,7 +10,7 @@ import com.tbjfund.framework.tpa.OrderBy;
 
 public interface ${table.beanName}Facade{
 
-    Result<${table.primaryKey.SimpleJavaType}> getById(${table.primaryKey.SimpleJavaType} id);
+    Result<${table.beanName}> getById(${table.primaryKey.SimpleJavaType} id);
 
     Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy);
 

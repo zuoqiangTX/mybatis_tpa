@@ -3,7 +3,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--  本文档由TotalBuilder自动生成   dao不使用接口    -->
-<mapper namespace="tpa.${table.namespace}">
+<mapper namespace="${table.namespace}">
 
     <!-- result map -->
     <resultMap id="BaseResultMap" type="${table.namespace}">

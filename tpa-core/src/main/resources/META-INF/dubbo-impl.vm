@@ -2,35 +2,99 @@ package ${table.packageName}.facade.impl;
 
 ##imports
 import ${table.namespace};
+import ${table.namespace}Facade;
+import ${table.namespace}Service
 import ${table.primaryKey.javaType};
 import java.util.List;
 import com.tongbanjie.commons.lang.Result;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.tbjfund.framework.tpa.OrderBy;
+import com.alibaba.dubbo.config.annotation.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
-public interface ${table.beanName}FacadeImpl extends ${table.beanName}Facade{
+public class ${table.beanName}FacadeImpl implements ${table.beanName}Facade{
 
     @Autowired
     private ${table.beanName}Service ${table.injectName}Service;
 
     private Logger logger = LoggerFactory.getLogger(${table.beanName}FacadeImpl.class);
 
-    Result<${table.beanName}> getById(${table.primaryKey.SimpleJavaType} id){
-        Result<${table.beanName}> result = null;
+    @Override
+    public Result<${table.beanName}> getById(${table.primaryKey.SimpleJavaType} id){
+        try {
+            ${table.beanName} r = ${table.injectName}Service.getById(id);
+            return Result.buildSucc(r);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return Result.buildFail("-1", "接口异常");
     }
 
-    Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy);
+    @Override
+    public Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy){
+        try {
+            List<${table.beanName}> r = ${table.injectName}Service.getList(example, offset, rows, orderBy);
+            return Result.buildSucc(r);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return Result.buildFail("-1", "接口异常");
+    }
 
-    Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows);
+    @Override
+    public Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows){
+        try {
+            List<${table.beanName}> r = ${table.injectName}Service.getList(example, offset, rows);
+            return Result.buildSucc(r);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return Result.buildFail("-1", "接口异常");
+    }
 
-    Result<Integer> getCount(${table.beanName} example);
+    @Override
+    public Result<Integer> getCount(${table.beanName} example){
+        try {
+            Integer r = ${table.injectName}Service.getCount(example);
+            return Result.buildSucc(r);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return Result.buildFail("-1", "接口异常");
+    }
 
-    Result<Integer> insert(${table.beanName} example);
+    @Override
+    public Result<Integer> insert(${table.beanName} example){
+        try {
+            Integer r = ${table.injectName}Service.insert(example);
+            return Result.buildSucc(r);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return Result.buildFail("-1", "接口异常");
+    }
 
-    Result<Integer> deleteById(${table.primaryKey.SimpleJavaType} key);
+    @Override
+    public Result<Integer> deleteById(${table.primaryKey.SimpleJavaType} key){
+        try {
+            Integer r = ${table.injectName}Service.deleteById(key);
+            return Result.buildSucc(r);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return Result.buildFail("-1", "接口异常");
+    }
 
-    Result<Integer> updateById(${table.beanName} example);
+    @Override
+    public Result<Integer> updateById(${table.beanName} example){
+        try {
+            Integer r = ${table.injectName}Service.updateById(example);
+            return Result.buildSucc(r);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return Result.buildFail("-1", "接口异常");
+    }
 
 }

@@ -16,7 +16,7 @@ public class TpaSupportDao<T, PK> extends SqlSessionDaoSupport {
     private String namaspace;
 
     {
-        this.namaspace = "tpa." + getSuperClassGenricType(getClass(), 0).getCanonicalName();
+        this.namaspace = getSuperClassGenricType(getClass(), 0).getCanonicalName();
     }
 
     /**

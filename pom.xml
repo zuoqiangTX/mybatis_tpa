@@ -9,6 +9,8 @@
         <module>tpa-core</module>
         <module>tpa-maven-plugin</module>
         <module>tpa-maven-test</module>
+        <module>tpa-webapp</module>
+        <module>tpa-lang</module>
     </modules>
     <packaging>pom</packaging>
 

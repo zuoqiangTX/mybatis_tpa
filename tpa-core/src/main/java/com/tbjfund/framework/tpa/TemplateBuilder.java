@@ -20,6 +20,7 @@ public class TemplateBuilder {
     public final static String DUBBO_IMPL           = "dubbo-impl.vm";
     public final static String DAO_INTERFACE        = "dao-interface.vm";
     public final static String DAO_IMPL             = "dao-impl.vm";
+    public final static String MODEL                = "model.vm";
 
     public static String build(TableConfig table, String templateName){
         VelocityContext velocityContext = new VelocityContext();
