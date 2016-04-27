@@ -2,6 +2,9 @@ package com.tbjfund.framework.tpa.velocity;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.RuntimeInstance;
+import org.apache.velocity.runtime.log.NullLogChute;
 
 import java.io.*;
 import java.util.Properties;
@@ -20,7 +23,11 @@ public class VelocityFactory {
 		prop.setProperty("resource.loader", "class");
 		//prop.setProperty("class.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader" );
 		prop.setProperty("class.resource.loader.class","com.tbjfund.framework.tpa.velocity.URIResourceLoader" );
-		ve = new VelocityEngine();
+		prop.setProperty("runtime.log.logsystem.class","org.apache.velocity.runtime.log.Log4JLogChute" );
+		prop.setProperty("runtime.log.logsystem.log4j.logger","E" );
+		prop.setProperty("log4j.logger.org.apache.velocity","ERROR" );
+
+        ve = new VelocityEngine();
 		ve.init(prop);
 	}
 	

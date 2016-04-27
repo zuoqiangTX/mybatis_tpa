@@ -43,6 +43,7 @@ public class DispatcherServlet implements Filter {
         HttpController controller = controllers.get(uri);
         if (controller == null){
             filterChain.doFilter(servletRequest, servletResponse);
+            return;
         }
         String jsp = controller.service(req, resp);
         if (jsp != null){

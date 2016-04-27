@@ -48,10 +48,11 @@
         </c:forEach>
     </table>
     <input name="tableConfigJson" type="hidden" value="${tableConfigJson}"/>
-    <input type="submit" name="下载"/>
+    <input type="submit" value="下载" style="margin-top: 10px"/>
 </form>
+<hr>
 <h5>您的工程中需要引入这个语言包，这个包很简单，主要是一个Dao的父类和几个Annotation,不会对你的工程造成污染</h5>
-<h5>当然如果您不使用Tpa为您生成的Dao实现，只是使用了自动生成的Mode和Mybatis文件的话，那您则不需要引入.</h5>
+<h5>当然如果您不使用Tpa为您生成的Dao实现，只是使用了自动生成的Mode和Mybatis文件片段的话，那您则不需要引入.</h5>
 <h6>
     <textarea cols="100" rows="10">
         <dependency>

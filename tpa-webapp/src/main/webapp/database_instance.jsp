@@ -23,9 +23,9 @@
     <tr>
         <td>IP</td>
         <td>Port</td>
+        <td>Password</td>
         <td>DBType</td>
         <td>UserName</td>
-        <td>Password</td>
         <td>Schema</td>
         <td>Operator</td>
     </tr>
@@ -36,16 +36,24 @@
                 <a href="tables?ip=${database.ip}&port=${database.port}&userName=${database.userName}&password=${database.password}&schema=${database.schema}">${database.ip}</a>
             </td>
             <td>${database.port}</td>
+            <td>${database.schema}</td>
             <td>${database.dbType}</td>
             <td>${database.userName}</td>
             <td>${database.password}</td>
-            <td>${database.schema}</td>
             <td>
-                <a href="instance_edit_delete?ip=${database.ip}&port=${database.port}&schema=${database.schema}">删除</a>
+                <a href="javascript:beforeOpen('instance_edit_delete?ip=${database.ip}&port=${database.port}&schema=${database.schema}')">删除</a>
                 <a href="instance_edit?ip=${database.ip}&port=${database.port}&userName=${database.userName}&password=${database.password}&schema=${database.schema}">修改</a>
             </td>
         </tr>
     </c:forEach>
 </table>
+<script>
+    function beforeOpen(url){
+        var confirmValue=window.confirm("是否删除");
+        if(confirmValue){
+            window.open(url);
+        }
+    }
+</script>
 </body>
 </html>
