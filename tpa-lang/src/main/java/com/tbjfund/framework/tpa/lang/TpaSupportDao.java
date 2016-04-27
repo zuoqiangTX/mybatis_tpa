@@ -126,4 +126,8 @@ public class TpaSupportDao<T, PK> extends SqlSessionDaoSupport {
 
         return (Class) params[index];
     }
+
+    public String getNamaspace() {
+        return namaspace;
+    }
 }
