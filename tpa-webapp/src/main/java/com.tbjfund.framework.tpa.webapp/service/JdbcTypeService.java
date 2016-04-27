@@ -67,7 +67,7 @@ public class JdbcTypeService {
         typeMap.put(Types.REF, new JdbcType("REF", //$NON-NLS-1$
                 Object.class.getName()));
         typeMap.put(Types.SMALLINT, new JdbcType("SMALLINT", //$NON-NLS-1$
-                Short.class.getName()));
+                Integer.class.getName()));
         typeMap.put(Types.STRUCT, new JdbcType("STRUCT", //$NON-NLS-1$
                 Object.class.getName()));
         typeMap.put(Types.TIME, new JdbcType("TIME", //$NON-NLS-1$
@@ -75,7 +75,7 @@ public class JdbcTypeService {
         typeMap.put(Types.TIMESTAMP, new JdbcType("TIMESTAMP", //$NON-NLS-1$
                 Date.class.getName()));
         typeMap.put(Types.TINYINT, new JdbcType("TINYINT", //$NON-NLS-1$
-                Byte.class.getName()));
+                Integer.class.getName()));
         typeMap.put(Types.VARBINARY, new JdbcType("VARBINARY", //$NON-NLS-1$
                 "byte[]")); //$NON-NLS-1$
         typeMap.put(Types.VARCHAR, new JdbcType("VARCHAR", //$NON-NLS-1$
