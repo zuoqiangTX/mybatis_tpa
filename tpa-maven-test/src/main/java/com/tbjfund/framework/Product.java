@@ -1,7 +1,8 @@
 package com.tbjfund.framework;
 
-import com.tbjfund.framework.tpa.annotation.PrimaryKey;
-import com.tbjfund.framework.tpa.annotation.Table;
+
+import com.tbjfund.framework.tpa.lang.annotation.PrimaryKey;
+import com.tbjfund.framework.tpa.lang.annotation.Table;
 
 @Table(name = "product")
 public class Product {
