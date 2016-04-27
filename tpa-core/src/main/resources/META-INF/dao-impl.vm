@@ -3,7 +3,7 @@ package ${table.packageName}.dao.impl;
 ##imports
 import ${table.namespace};
 import org.springframework.stereotype.Repository;
-import com.tbjfund.framework.tpa.TpaSupportDao;
+import com.tbjfund.framework.tpa.lang.TpaSupportDao;
 
 @Repository
 public class ${table.beanName}DaoImpl extends TpaSupportDao<${table.beanName}, ${table.primaryKey.SimpleJavaType}> {

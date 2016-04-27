@@ -5,7 +5,7 @@ import ${table.namespace};
 import ${table.primaryKey.javaType};
 import java.util.List;
 import com.tongbanjie.commons.lang.Result;
-import com.tbjfund.framework.tpa.OrderBy;
+import com.tbjfund.framework.tpa.lang.OrderBy;
 
 
 public interface ${table.beanName}Facade{

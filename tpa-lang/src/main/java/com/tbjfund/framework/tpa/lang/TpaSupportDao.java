@@ -1,4 +1,4 @@
-package com.tbjfund.framework.tpa;
+package com.tbjfund.framework.tpa.lang;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 

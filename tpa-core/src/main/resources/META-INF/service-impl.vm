@@ -6,7 +6,7 @@ import ${table.primaryKey.javaType};
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import com.tbjfund.framework.tpa.OrderBy;
+import com.tbjfund.framework.tpa.lang.OrderBy;
 
 @Service
 public class ${table.beanName}ServiceImpl implements ${table.beanName}Service{

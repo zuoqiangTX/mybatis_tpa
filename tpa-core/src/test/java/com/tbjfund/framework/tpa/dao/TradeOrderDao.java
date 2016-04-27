@@ -1,6 +1,6 @@
 package com.tbjfund.framework.tpa.dao;
 
-import com.tbjfund.framework.tpa.TpaSupportDao;
+import com.tbjfund.framework.tpa.lang.TpaSupportDao;
 import com.tbjfund.framework.tpa.model.TradeOrder;
 import org.springframework.stereotype.Repository;
 

@@ -1,11 +1,11 @@
 package com.tbjfund.framework.tpa.scan;
 
-import com.tbjfund.framework.tpa.annotation.Column;
-import com.tbjfund.framework.tpa.annotation.PrimaryKey;
-import com.tbjfund.framework.tpa.annotation.Table;
-import com.tbjfund.framework.tpa.annotation.Transient;
 import com.tbjfund.framework.tpa.config.ColumnConfig;
 import com.tbjfund.framework.tpa.config.TableConfig;
+import com.tbjfund.framework.tpa.lang.annotation.Column;
+import com.tbjfund.framework.tpa.lang.annotation.PrimaryKey;
+import com.tbjfund.framework.tpa.lang.annotation.Table;
+import com.tbjfund.framework.tpa.lang.annotation.Transient;
 import com.tbjfund.framework.tpa.utils.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;

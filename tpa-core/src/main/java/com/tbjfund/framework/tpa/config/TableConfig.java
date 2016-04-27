@@ -29,6 +29,9 @@ public class TableConfig {
 
     private List<ColumnConfig> columns;
 
+    // comment
+    private String comment;
+
     public String getNamespace() {
         return namespace;
     }
@@ -91,5 +94,13 @@ public class TableConfig {
 
     public void setInjectName(String injectName) {
         this.injectName = injectName;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

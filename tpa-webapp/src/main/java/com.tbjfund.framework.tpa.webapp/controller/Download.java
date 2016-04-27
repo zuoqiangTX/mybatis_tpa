@@ -40,6 +40,11 @@ public class Download implements HttpController {
             tableConfig.setInjectName(com.tbjfund.framework.tpa.utils.StringUtils.getFistLowName(beanName));
         }
 
+        String beanComment = req.getParameter("JavaTypeComment");
+        if (notBlank(beanComment)){
+            tableConfig.setComment(beanComment);
+        }
+
         List<ColumnConfig> columnConfigs = tableConfig.getColumns();
         if (columnConfigs != null){
             for (ColumnConfig c : columnConfigs){
@@ -58,7 +63,7 @@ public class Download implements HttpController {
         }
 
         resp.setContentType("application/octet-stream");
-        resp.setHeader("Content-disposition", "attachment;filename=\"" + tableConfig.getNamespace() + ".zip\"");
+        resp.setHeader("Content-disposition", "attachment;filename=\"Tpa-" + tableConfig.getBeanName() + ".zip\"");
 
         CheckedOutputStream cos = new CheckedOutputStream(resp.getOutputStream(), new CRC32());
         ZipOutputStream out = new ZipOutputStream(cos);

@@ -1,8 +1,9 @@
 package com.tbjfund.framework.tpa.model;
 
-import com.tbjfund.framework.tpa.annotation.Column;
-import com.tbjfund.framework.tpa.annotation.PrimaryKey;
-import com.tbjfund.framework.tpa.annotation.Table;
+
+import com.tbjfund.framework.tpa.lang.annotation.Column;
+import com.tbjfund.framework.tpa.lang.annotation.PrimaryKey;
+import com.tbjfund.framework.tpa.lang.annotation.Table;
 
 @Table(name = "t_order_0", aliasName = "TOrder")
 public class TradeOrder {

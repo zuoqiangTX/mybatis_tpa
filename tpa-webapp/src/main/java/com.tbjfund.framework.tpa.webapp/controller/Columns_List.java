@@ -93,7 +93,6 @@ public class Columns_List implements HttpController {
             String typeName = colRet.getString("TYPE_NAME");
             String comment = colRet.getString("REMARKS");
             comment = new String(comment.getBytes(), "utf-8");
-            System.out.println(comment);
             boolean isPrimaryKey = false;
             if (columnName.equals(primaryKey)){
                 isPrimaryKey = true;

@@ -8,6 +8,14 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
 </head>
 <body>
+<style>
+    input{
+        width: 200px;
+    }
+    table td,table th{
+        padding: 2px
+    }
+</style>
 <h2><a href="/">Tpa-Generator</a></h2>
 <h4>数据库实例 [<a href="/">返回</a>]</h4>
 

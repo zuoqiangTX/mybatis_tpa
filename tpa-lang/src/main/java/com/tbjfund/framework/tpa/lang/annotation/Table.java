@@ -1,4 +1,4 @@
-package com.tbjfund.framework.tpa.annotation;
+package com.tbjfund.framework.tpa.lang.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,14 +8,12 @@ import java.lang.annotation.Target;
 /**
  * Created by sidawei on 16/4/16.
  */
-@Target({ElementType.METHOD, ElementType.FIELD})
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PrimaryKey {
+public @interface Table {
 
     String name() default "";
 
-    boolean isAutoKey() default false;
-
-    boolean isPrimaryKey() default false;
+    String aliasName() default "";
 
 }

@@ -1,6 +1,7 @@
 package com.tbjfund.framework.tpa;
 
 import com.tbjfund.framework.tpa.dao.TradeOrderDao;
+import com.tbjfund.framework.tpa.lang.OrderBy;
 import com.tbjfund.framework.tpa.model.TradeOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

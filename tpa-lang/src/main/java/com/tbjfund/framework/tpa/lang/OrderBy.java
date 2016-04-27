@@ -1,4 +1,4 @@
-package com.tbjfund.framework.tpa;
+package com.tbjfund.framework.tpa.lang;
 
 /**
  * Created by sidawei on 16/4/17.

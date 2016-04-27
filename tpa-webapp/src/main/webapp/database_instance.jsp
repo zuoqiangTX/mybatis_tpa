@@ -8,6 +8,14 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
 </head>
 <body>
+<style>
+    input{
+        width: 200px;
+    }
+    table td,table th{
+        padding: 2px
+    }
+</style>
 <h2><a href="/">Tpa-Generator</a></h2>
 <h4>[一]选择数据库 [<a href="instance_edit">添加</a>]</h4>
 <table border="1" cellpadding="0" cellspacing="0" bordercolor="#002211" style="border-collapse:collapse;">
