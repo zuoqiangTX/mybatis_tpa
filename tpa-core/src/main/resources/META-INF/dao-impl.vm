@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.tbjfund.framework.tpa.lang.TpaSupportDao;
 
 @Repository
-public class ${table.beanName}DaoImpl extends TpaSupportDao<${table.beanName}, ${table.primaryKey.SimpleJavaType}> {
+public class ${table.beanName}DaoImpl extends TpaSupportDao<${table.beanName}, ${table.primaryKey.SimpleJavaType}> implements ${table.beanName}Dao{
 
 
 }

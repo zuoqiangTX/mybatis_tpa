@@ -14,6 +14,8 @@ import ${column.javaType};
 */
 public class ${table.beanName} implements Serializable {
 
+private static final long serialVersionUID = 1L;
+
 #foreach($column in $table.columns)
     // ${column.comment}
     private ${column.SimpleJavaType} ${column.fieldName};
