@@ -6,7 +6,7 @@
 <mapper namespace="${table.namespace}">
 
     <!-- result map -->
-    <resultMap id="BaseResultMap" type="${table.namespace}">
+    <resultMap id="BaseResultMap" type="${table.beanName}">
         #foreach($column in $table.columns)
             #if($column.isPrimaryKey())
                 ###jdbcType="${field.jdbcTypeName}"  javaType="${field.javaType}"
@@ -113,7 +113,7 @@
     </delete>
 
     <!-- update -->
-    <update id="updateByPrimaryKey" parameterType="${table.namespace}">
+    <update id="updateByPrimaryKey" parameterType="${table.beanName}">
         update ${table.tableName}
         <set>
             #foreach($column in $table.columns)
