@@ -22,10 +22,9 @@ public class TpaSupportDao<T, PK> extends SqlSessionDaoSupport {
     /**
      * 主键查询
      * @param id
-     * @param <T>
      * @return
      */
-    public <T> T findByPrimaryKey(PK id){
+    public T findByPrimaryKey(PK id){
         return (T) getSqlSession().selectOne(this.namaspace + ".findByPrimaryKey", id);
     }
 

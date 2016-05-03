@@ -12,7 +12,7 @@ import com.tbjfund.framework.tpa.lang.OrderBy;
 public class ${table.beanName}ServiceImpl implements ${table.beanName}Service{
 
     @Autowired
-    private ${table.beanName}DaoImpl ${table.injectName}Dao;
+    private ${table.beanName}Dao ${table.injectName}Dao;
 
     @Override
     public ${table.beanName} getById(${table.primaryKey.SimpleJavaType} id){

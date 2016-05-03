@@ -45,6 +45,11 @@ public class Download implements HttpController {
             tableConfig.setComment(beanComment);
         }
 
+        String packageName = req.getParameter("package");
+        if (notBlank(packageName)){
+            tableConfig.setNamespace(packageName + "." + tableConfig.getBeanName());
+        }
+
         List<ColumnConfig> columnConfigs = tableConfig.getColumns();
         if (columnConfigs != null){
             for (ColumnConfig c : columnConfigs){

@@ -43,7 +43,7 @@
     </dependencies>
 
     <build>
-        <finalName>tpa-webapp</finalName>
+        <finalName>tpa</finalName>
     </build>
 
 </project>

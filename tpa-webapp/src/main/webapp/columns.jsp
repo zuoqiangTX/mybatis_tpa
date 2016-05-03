@@ -23,6 +23,7 @@
 <h4>表名:${table.tableName}</h4>
 <h4>Model名: <input name="JavaTypeName" type="text" class="input" value="${table.beanName}"/></h4>
 <h4>Model注释: <input name="JavaTypeComment" type="text" class="input" value=""/></h4>
+<h4>package: <input name="package" type="text" class="input" value=""/></h4>
     <table border="1" cellpadding="0" cellspacing="0" bordercolor="#002211" style="border-collapse:collapse;">
         <thead>
             <tr>
