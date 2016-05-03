@@ -10,7 +10,7 @@ import java.util.List;
  * Created by sidawei on 16/4/26.
  */
 public class ZkHolder {
-    private final static String connectionString = "192.168.1.120:2181";
+    private final static String connectionString = "192.168.1.204:2181";
     private final static int connectionTimeout = 5000;
     private static ZkClient zkClient;
 
