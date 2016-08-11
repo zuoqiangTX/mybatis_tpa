@@ -1,9 +1,13 @@
 package com.tbjfund.framework.tpa.lang;
 
+import java.io.Serializable;
+
 /**
  * Created by sidawei on 16/4/17.
  */
-public class OrderBy {
+public class OrderBy implements Serializable{
+
+    private static final long serialVersionUID = -2572112839633099823L;
 
     public static final String ASC = "ASC";
 
