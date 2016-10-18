@@ -33,9 +33,9 @@ public class ${table.beanName}FacadeImpl implements ${table.beanName}Facade{
     }
 
     @Override
-    public Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy){
+    public Result<List<${table.beanName}>> getList(${table.beanName} ${table.injectName}, Integer offset, Integer rows, OrderBy orderBy){
         try {
-            List<${table.beanName}> r = ${table.injectName}Service.getList(example, offset, rows, orderBy);
+            List<${table.beanName}> r = ${table.injectName}Service.getList(${table.injectName}, offset, rows, orderBy);
             return Result.buildSucc(r);
         } catch (Exception e) {
             logger.error("", e);
@@ -44,9 +44,9 @@ public class ${table.beanName}FacadeImpl implements ${table.beanName}Facade{
     }
 
     @Override
-    public Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows){
+    public Result<List<${table.beanName}>> getList(${table.beanName} ${table.injectName}, Integer offset, Integer rows){
         try {
-            List<${table.beanName}> r = ${table.injectName}Service.getList(example, offset, rows);
+            List<${table.beanName}> r = ${table.injectName}Service.getList(${table.injectName}, offset, rows);
             return Result.buildSucc(r);
         } catch (Exception e) {
             logger.error("", e);
@@ -55,9 +55,9 @@ public class ${table.beanName}FacadeImpl implements ${table.beanName}Facade{
     }
 
     @Override
-    public Result<Integer> getCount(${table.beanName} example){
+    public Result<Integer> getCount(${table.beanName} ${table.injectName}){
         try {
-            Integer r = ${table.injectName}Service.getCount(example);
+            Integer r = ${table.injectName}Service.getCount(${table.injectName});
             return Result.buildSucc(r);
         } catch (Exception e) {
             logger.error("", e);
@@ -66,9 +66,9 @@ public class ${table.beanName}FacadeImpl implements ${table.beanName}Facade{
     }
 
     @Override
-    public Result<Integer> insert(${table.beanName} example){
+    public Result<Integer> insert(${table.beanName} ${table.injectName}){
         try {
-            Integer r = ${table.injectName}Service.insert(example);
+            Integer r = ${table.injectName}Service.insert(${table.injectName});
             return Result.buildSucc(r);
         } catch (Exception e) {
             logger.error("", e);
@@ -88,9 +88,9 @@ public class ${table.beanName}FacadeImpl implements ${table.beanName}Facade{
     }
 
     @Override
-    public Result<Integer> updateById(${table.beanName} example){
+    public Result<Integer> updateById(${table.beanName} ${table.injectName}){
         try {
-            Integer r = ${table.injectName}Service.updateById(example);
+            Integer r = ${table.injectName}Service.updateById(${table.injectName});
             return Result.buildSucc(r);
         } catch (Exception e) {
             logger.error("", e);

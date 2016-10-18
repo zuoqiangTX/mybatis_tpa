@@ -12,16 +12,16 @@ public interface ${table.beanName}Facade{
 
     Result<${table.beanName}> getById(${table.primaryKey.SimpleJavaType} id);
 
-    Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy);
+    Result<List<${table.beanName}>> getList(${table.beanName} ${table.injectName}, Integer offset, Integer rows, OrderBy orderBy);
 
-    Result<List<${table.beanName}>> getList(${table.beanName} example, Integer offset, Integer rows);
+    Result<List<${table.beanName}>> getList(${table.beanName} ${table.injectName}, Integer offset, Integer rows);
 
-    Result<Integer> getCount(${table.beanName} example);
+    Result<Integer> getCount(${table.beanName} ${table.injectName});
 
-    Result<Integer> insert(${table.beanName} example);
+    Result<Integer> insert(${table.beanName} ${table.injectName});
 
     Result<Integer> deleteById(${table.primaryKey.SimpleJavaType} key);
 
-    Result<Integer> updateById(${table.beanName} example);
+    Result<Integer> updateById(${table.beanName} ${table.injectName});
 
 }

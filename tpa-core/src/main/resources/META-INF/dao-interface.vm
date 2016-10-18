@@ -23,7 +23,7 @@ public interface ${table.beanName}Dao{
     * @param rows
     * @return
     */
-    List<${table.beanName}> findByExample(${table.beanName} example, Integer offset, Integer rows);
+    List<${table.beanName}> findByExample(${table.beanName} ${table.injectName}, Integer offset, Integer rows);
 
     /**
     * 条件查询
@@ -33,21 +33,21 @@ public interface ${table.beanName}Dao{
     * @param orderby
     * @return
     */
-    List<${table.beanName}> findByExample(${table.beanName} example, Integer offset, Integer rows, OrderBy orderby);
+    List<${table.beanName}> findByExample(${table.beanName} ${table.injectName}, Integer offset, Integer rows, OrderBy orderby);
 
     /**
     * 条件查询－数量
     * @param example
     * @return
     */
-    Integer findCountByExample(${table.beanName} example);
+    Integer findCountByExample(${table.beanName} ${table.injectName});
 
     /**
     * 插入
     * @param example
     * @return
     */
-    Integer insert(${table.beanName} example);
+    Integer insert(${table.beanName} ${table.injectName});
 
     /**
     * 主键删除
@@ -61,6 +61,6 @@ public interface ${table.beanName}Dao{
     * @param example
     * @return
     */
-    Integer updateByPrimaryKey(${table.beanName} example);
+    Integer updateByPrimaryKey(${table.beanName} ${table.injectName});
 
 }

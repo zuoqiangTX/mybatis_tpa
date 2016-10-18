@@ -20,23 +20,23 @@ public class ${table.beanName}ServiceImpl implements ${table.beanName}Service{
     }
 
     @Override
-    public List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows, OrderBy orderBy){
-        return ${table.injectName}Dao.findByExample(example, offset, rows, orderBy);
+    public List<${table.beanName}> getList(${table.beanName} ${table.injectName}, Integer offset, Integer rows, OrderBy orderBy){
+        return ${table.injectName}Dao.findByExample(${table.injectName}, offset, rows, orderBy);
     }
 
     @Override
-    public List<${table.beanName}> getList(${table.beanName} example, Integer offset, Integer rows){
-        return ${table.injectName}Dao.findByExample(example, offset, rows);
+    public List<${table.beanName}> getList(${table.beanName} ${table.injectName}, Integer offset, Integer rows){
+        return ${table.injectName}Dao.findByExample(${table.injectName}, offset, rows);
     }
 
     @Override
-    public Integer getCount(${table.beanName} example){
-        return ${table.injectName}Dao.findCountByExample(example);
+    public Integer getCount(${table.beanName} ${table.injectName}){
+        return ${table.injectName}Dao.findCountByExample(${table.injectName});
     }
 
     @Override
-    public Integer insert(${table.beanName} example){
-        return ${table.injectName}Dao.insert(example);
+    public Integer insert(${table.beanName} ${table.injectName}){
+        return ${table.injectName}Dao.insert(${table.injectName});
     }
 
     @Override
@@ -45,8 +45,8 @@ public class ${table.beanName}ServiceImpl implements ${table.beanName}Service{
     }
 
     @Override
-    public Integer updateById(${table.beanName} example){
-        return ${table.injectName}Dao.updateByPrimaryKey(example);
+    public Integer updateById(${table.beanName} ${table.injectName}){
+        return ${table.injectName}Dao.updateByPrimaryKey(${table.injectName});
     }
 
 }

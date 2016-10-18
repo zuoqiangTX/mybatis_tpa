@@ -78,10 +78,10 @@
         </if>
     </sql>
 
-    <!-- select count by example -->
+    <!-- select current by example -->
     <select id="findCountByExample" parameterType="map" resultType="int">
         select
-            count(1)
+            current(1)
         from ${table.tableName}
         <where>
             <trim prefix="" prefixOverrides="and" suffix="">
