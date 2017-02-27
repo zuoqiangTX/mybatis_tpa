@@ -12,21 +12,31 @@ import java.util.List;
 public class ZkHolder {
     private final static String connectionString = "192.168.1.204:2181";
     private final static int connectionTimeout = 5000;
-    private static ZkClient zkClient;
+    private ZkClient zkClient;
+    private Boolean zkInit = false;
 
     static {
-        ZkClient zkClient = getClient();
+        ZkClient zkClient = new ZkClient(connectionString, connectionTimeout);
         createNode("/tpa", zkClient);
         createNode("/tpa/databases", zkClient);
         createNode("/tpa/tables", zkClient);
+        zkClient.close();
     }
 
     public ZkHolder() {
         zkClient = getClient();
     }
 
-    public static ZkClient getClient() {
-        return new ZkClient(connectionString, connectionTimeout);
+    public ZkClient getClient() {
+        if (!zkInit){
+            synchronized (zkInit){
+                if (!zkInit){
+                    zkClient = new ZkClient(connectionString, connectionTimeout);
+                    zkInit = true;
+                }
+            }
+        }
+        return zkClient;
     }
 
     public static void createNode(String path, ZkClient client){
