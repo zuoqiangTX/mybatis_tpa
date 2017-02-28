@@ -81,7 +81,7 @@
     <!-- select current by example -->
     <select id="findCountByExample" parameterType="map" resultType="int">
         select
-            current(1)
+            count(1)
         from ${table.tableName}
         <where>
             <trim prefix="" prefixOverrides="and" suffix="">
