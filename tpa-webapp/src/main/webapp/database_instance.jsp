@@ -23,10 +23,10 @@
     <tr>
         <td>IP</td>
         <td>Port</td>
-        <td>Password</td>
+        <td>Schema</td>
         <td>DBType</td>
         <td>UserName</td>
-        <td>Schema</td>
+        <td>Password</td>
         <td>Operator</td>
     </tr>
     </thead>
