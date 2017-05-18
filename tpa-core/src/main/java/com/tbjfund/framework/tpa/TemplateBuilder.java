@@ -13,14 +13,13 @@ import java.io.OutputStreamWriter;
  */
 public class TemplateBuilder {
 
-    public final static String MAPPER               = "template.vm";
-    public final static String SERVICE_INTERFACE    = "service-interface.vm";
-    public final static String SERVICE_IMPL         = "service-impl.vm";
-    public final static String DUBBO_FACADE         = "dubbo-interface.vm";
-    public final static String DUBBO_IMPL           = "dubbo-impl.vm";
-    public final static String DAO_INTERFACE        = "dao-interface.vm";
-    public final static String DAO_IMPL             = "dao-impl.vm";
-    public final static String MODEL                = "model.vm";
+    public final static String MAPPER = "template.vm";
+    public final static String model = "model.vm";
+    public final static String DAO = "DAO.vm";
+    public final static String DAOImpl = "DAOImpl.vm";
+    public final static String Service = "Service.vm";
+    public final static String ServiceImpl = "ServiceImpl.vm";
+    public final static String DOConverter = "DOConverter.vm";
 
     public static String build(TableConfig table, String templateName){
         VelocityContext velocityContext = new VelocityContext();

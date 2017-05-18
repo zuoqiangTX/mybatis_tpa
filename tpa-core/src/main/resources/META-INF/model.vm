@@ -1,6 +1,4 @@
-package ${table.packageName};
 
-##imports
 import java.io.Serializable;
 #foreach($column in $table.columns)
 #if(!$column.javaType.startsWith("java.lang"))
@@ -8,16 +6,15 @@ import ${column.javaType};
 #end
 #end
 
-/**
-* Created by Tpa-Generator
-* $!{table.comment}
-*/
 public class ${table.beanName} implements Serializable {
 
 private static final long serialVersionUID = 1L;
 
 #foreach($column in $table.columns)
-    // ${column.comment}
+
+    /**
+     * ${column.comment}
+     */
     private ${column.SimpleJavaType} ${column.fieldName};
 #end
 

@@ -82,26 +82,23 @@ public class Download implements HttpController {
         String buffer = TemplateBuilder.build(table, TemplateBuilder.MAPPER);
         printFile(buffer, table.getNamespace(), table.getTableName() + ".xml", out);
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.SERVICE_INTERFACE);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.model);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + ".java", out);
+
+        buffer = TemplateBuilder.build(table, TemplateBuilder.Service);
         printFile(buffer, table.getNamespace(), table.getBeanName() + "Service.java", out);
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.SERVICE_IMPL);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.ServiceImpl);
         printFile(buffer, table.getNamespace(), table.getBeanName() + "ServiceImpl.java", out);
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO_INTERFACE);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "Dao.java", out);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DAO.java", out);
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO_IMPL);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "DaoImpl.java", out);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DAOImpl);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DAOImpl.java", out);
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_FACADE);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "Facade.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_IMPL);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "FacadeImpl.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.MODEL);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + ".java", out);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DOConverter);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DOConverter.java", out);
 
         out.flush();
     }
