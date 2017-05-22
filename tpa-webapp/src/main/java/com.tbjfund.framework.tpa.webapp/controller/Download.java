@@ -100,6 +100,11 @@ public class Download implements HttpController {
         buffer = TemplateBuilder.build(table, TemplateBuilder.DOConverter);
         printFile(buffer, table.getNamespace(), table.getBeanName() + "DOConverter.java", out);
 
+        buffer = TemplateBuilder.build(table, TemplateBuilder.Query);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "Query.java", out);
+
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DO);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DO.java", out);
         out.flush();
     }
 
