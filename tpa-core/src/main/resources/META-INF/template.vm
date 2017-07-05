@@ -44,7 +44,7 @@
     #end
     </sql>
 
-    <insert id="INSERT" parameterType="${table.namespace}" useGeneratedKeys="true" keyProperty="${table.primaryKey.fieldName}">
+    <insert id="INSERT" parameterType="${table.namespace}DO" useGeneratedKeys="true" keyProperty="${table.primaryKey.fieldName}">
         INSERT INTO ${table.tableName} (<include refid="Base_Column_List" />)
         VALUES(
         #foreach($column in $table.columns)
@@ -55,7 +55,7 @@
         )
     </insert>
 
-    <update id="UPDATE_BY_ID" parameterType="${table.beanName}">
+    <update id="UPDATE_BY_ID" parameterType="${table.beanName}DO">
         update
             ${table.tableName}
         <set>
