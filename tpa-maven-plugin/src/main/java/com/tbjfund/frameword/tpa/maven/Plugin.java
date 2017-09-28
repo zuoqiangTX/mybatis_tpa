@@ -137,23 +137,32 @@ public class Plugin extends AbstractMojo {
         String buffer = TemplateBuilder.build(table, TemplateBuilder.MAPPER);
         printFile(buffer, table.getNamespace(), table.getTableName() + ".xml");
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.SERVICE_INTERFACE);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.Service);
         printFile(buffer, table.getNamespace(), table.getBeanName() + "Service.java");
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.SERVICE_IMPL);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.ServiceImpl);
         printFile(buffer, table.getNamespace(), table.getBeanName() + "ServiceImpl.java");
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO_INTERFACE);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO);
         printFile(buffer, table.getNamespace(), table.getBeanName() + "Dao.java");
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO_IMPL);
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DAOImpl);
         printFile(buffer, table.getNamespace(), table.getBeanName() + "DaoImpl.java");
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_FACADE);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "Facade.java");
+        buffer = TemplateBuilder.build(table, TemplateBuilder.Query);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "Query.java");
 
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_IMPL);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "FacadeImpl.java");
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DOConverter);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DOConverter.java");
+
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DO);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DO.java");
+
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_FACADE);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "Facade.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_IMPL);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "FacadeImpl.java");
     }
 
     private void printFile(String buffer, String pkg,  String name) throws IOException {
