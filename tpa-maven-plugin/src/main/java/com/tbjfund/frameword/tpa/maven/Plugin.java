@@ -158,11 +158,23 @@ public class Plugin extends AbstractMojo {
         buffer = TemplateBuilder.build(table, TemplateBuilder.DO);
         printFile(buffer, table.getNamespace(), table.getBeanName() + "DO.java");
 
-//        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_FACADE);
-//        printFile(buffer, table.getNamespace(), table.getBeanName() + "Facade.java");
-//
-//        buffer = TemplateBuilder.build(table, TemplateBuilder.DUBBO_IMPL);
-//        printFile(buffer, table.getNamespace(), table.getBeanName() + "FacadeImpl.java");
+        buffer = TemplateBuilder.build(table, TemplateBuilder.dtoModel);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DTO.java");
+
+        buffer = TemplateBuilder.build(table, TemplateBuilder.DTOConverter);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "DTOConverter.java");
+        
+        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacade);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "ManageFacade.java");
+        
+        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacadeImpl);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "ManageFacadeImpl.java");
+        
+        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacade);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "QueryFacade.java");
+        
+        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacadeImpl);
+        printFile(buffer, table.getNamespace(), table.getBeanName() + "QueryFacadeImpl.java");
     }
 
     private void printFile(String buffer, String pkg,  String name) throws IOException {
