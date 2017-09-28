@@ -1,6 +1,9 @@
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 @Service
 public class ${table.beanName}QueryFacadeImpl implements ${table.beanName}QueryFacade {
@@ -13,7 +16,7 @@ public class ${table.beanName}QueryFacadeImpl implements ${table.beanName}QueryF
     private ${table.beanName}DTOConverter converter;
 
     @Override
-    Result<${table.beanName}DTO> findById(Long id) {
+    public Result<${table.beanName}DTO> findById(Long id) {
        try {
 			Assert.notNull(id, "编号不能为空");
 
@@ -27,7 +30,7 @@ public class ${table.beanName}QueryFacadeImpl implements ${table.beanName}QueryF
     }
 
     @Override
-    Result<List<${table.beanName}DTO>> query(${table.beanName}Query query){
+    public Result<List<${table.beanName}DTO>> query(${table.beanName}Query query){
        try {
 			Assert.notNull(query, "查询参数不能为空");
 
@@ -41,7 +44,7 @@ public class ${table.beanName}QueryFacadeImpl implements ${table.beanName}QueryF
     }
 
     @Override
-    Result<Integer> count(${table.beanName}Query query) {
+    public Result<Integer> count(${table.beanName}Query query) {
          try {
 			Assert.notNull(query, "统计参数不能为空");
 

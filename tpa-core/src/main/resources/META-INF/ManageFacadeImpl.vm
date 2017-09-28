@@ -1,6 +1,9 @@
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 @Service
 public class ${table.beanName}ManageFacadeImpl implements ${table.beanName}ManageFacade {
@@ -36,7 +39,7 @@ public class ${table.beanName}ManageFacadeImpl implements ${table.beanName}Manag
     	try {
 			Assert.notNull(${table.injectName}DTO, "待新增记录参数不能为空");
 
-			int insertResult = ${table.injectName}Service.insert(${table.injectName}DTO);
+			int insertResult = ${table.injectName}Service.insert(converter.toModel(${table.injectName}DTO));
 			if (insertResult > 0) {
 				return Result.buildSucc(true);
 			} else {
