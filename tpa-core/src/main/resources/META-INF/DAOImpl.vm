@@ -16,7 +16,7 @@ public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${
 
         query.decorate();
 
-        return this.getSqlSession().selectList("${table.beanName}.QUERY", query);
+        return this.getSqlSession().selectList("${table.namespace}.QUERY", query);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${
 
         Assert.notNull(query);
 
-        return this.getSqlSession().selectOne("${table.beanName}.COUNT", query);
+        return this.getSqlSession().selectOne("${table.namespace}.COUNT", query);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${
 
         Assert.notNull(id, "id不能为空");
 
-        return this.getSqlSession().selectOne("${table.beanName}.FIND_BY_ID", id);
+        return this.getSqlSession().selectOne("${table.namespace}.FIND_BY_ID", id);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${
         updateParam.setCreateTime(null);
         updateParam.setModifyTime(new Date());
 
-        return this.getSqlSession().update("${table.beanName}.UPDATE_BY_ID", updateParam);
+        return this.getSqlSession().update("${table.namespace}.UPDATE_BY_ID", updateParam);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${
         ${table.injectName}DO.setCreateTime(new Date());
         ${table.injectName}DO.setModifyTime(null);
 
-        return this.getSqlSession().insert("${table.beanName}.INSERT", ${table.injectName}DO);
+        return this.getSqlSession().insert("${table.namespace}.INSERT", ${table.injectName}DO);
     }
 
     private void checkParamForInsert(${table.beanName}DO ${table.injectName}DO) {
