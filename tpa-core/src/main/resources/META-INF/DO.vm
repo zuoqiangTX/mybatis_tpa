@@ -1,4 +1,4 @@
-
+package 
 import java.io.Serializable;
 #foreach($column in $table.columns)
 #if(!$column.javaType.startsWith("java.lang"))
@@ -6,7 +6,7 @@ import ${column.javaType};
 #end
 #end
 
-public class ${table.beanName}DO {
+public class ${table.beanName}DO implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
