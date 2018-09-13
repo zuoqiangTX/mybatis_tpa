@@ -24,6 +24,7 @@ public class JavaCodeGenerator {
     private static final String schema = "tz_tplan";
     private static final String userName = "tbj";
     private static final String password = "tbj900900";
+    private static final String localFilePath = "/Users/zhangwei/Downloads/%s.zip";  // <<<< 修改
 
     public static void main(String[] args) {
         String[] tables = new String[]{
@@ -45,7 +46,7 @@ public class JavaCodeGenerator {
             tableConfig.setBeanName(beanName);
             tableConfig.setInjectName(StringUtils.getFistLowName(beanName));
 
-            File file = new File("/Users/zhangwei/Downloads/" + beanName + ".zip");
+            File file = new File(String.format(localFilePath, beanName));
             if (file.exists() && !file.delete()) {
                 throw new RuntimeException("delete fail");
             }
@@ -71,46 +72,46 @@ public class JavaCodeGenerator {
         printFile(buffer, table.getTableName() + ".xml", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.model);
-        printFile(buffer,  table.getBeanName() + ".java", out);
+        printFile(buffer, table.getBeanName() + ".java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.Service);
-        printFile(buffer,  table.getBeanName() + "Service.java", out);
+        printFile(buffer, table.getBeanName() + "Service.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.ServiceImpl);
-        printFile(buffer,  table.getBeanName() + "ServiceImpl.java", out);
+        printFile(buffer, table.getBeanName() + "ServiceImpl.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DAO);
-        printFile(buffer,  table.getBeanName() + "DAO.java", out);
+        printFile(buffer, table.getBeanName() + "DAO.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DAOImpl);
-        printFile(buffer,  table.getBeanName() + "DAOImpl.java", out);
+        printFile(buffer, table.getBeanName() + "DAOImpl.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DOConverter);
-        printFile(buffer,  table.getBeanName() + "DOConverter.java", out);
+        printFile(buffer, table.getBeanName() + "DOConverter.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.Query);
-        printFile(buffer,  table.getBeanName() + "Query.java", out);
+        printFile(buffer, table.getBeanName() + "Query.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DO);
-        printFile(buffer,  table.getBeanName() + "DO.java", out);
+        printFile(buffer, table.getBeanName() + "DO.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.dtoModel);
-        printFile(buffer,  table.getBeanName() + "DTO.java", out);
+        printFile(buffer, table.getBeanName() + "DTO.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.DTOConverter);
-        printFile(buffer,  table.getBeanName() + "DTOConverter.java", out);
+        printFile(buffer, table.getBeanName() + "DTOConverter.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacade);
-        printFile(buffer,  table.getBeanName() + "ManageFacade.java", out);
+        printFile(buffer, table.getBeanName() + "ManageFacade.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacadeImpl);
-        printFile(buffer,  table.getBeanName() + "ManageFacadeImpl.java", out);
+        printFile(buffer, table.getBeanName() + "ManageFacadeImpl.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacade);
-        printFile(buffer,  table.getBeanName() + "QueryFacade.java", out);
+        printFile(buffer, table.getBeanName() + "QueryFacade.java", out);
 
         buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacadeImpl);
-        printFile(buffer,  table.getBeanName() + "QueryFacadeImpl.java", out);
+        printFile(buffer, table.getBeanName() + "QueryFacadeImpl.java", out);
 
         out.flush();
     }
