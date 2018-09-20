@@ -9,12 +9,9 @@ public class ${table.beanName}ServiceImpl implements ${table.beanName}Service {
     @Autowired
     private ${table.beanName}DAO ${table.injectName}DAO;
 
-    @Autowired
-    private ${table.beanName}DOConverter converter;
-
     @Override
     public List<${table.beanName}> query(${table.beanName}Query query) {
-        return converter.asModelList(${table.injectName}DAO.query(query));
+        return ${table.injectName}DAO.query(query);
     }
 
     @Override
@@ -24,25 +21,17 @@ public class ${table.beanName}ServiceImpl implements ${table.beanName}Service {
 
     @Override
     public ${table.beanName} findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName}) {
-        return converter.toModel(${table.injectName}DAO.findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.fieldName}));
+        return ${table.injectName}DAO.findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.fieldName});
     }
 
     @Override
     public int updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName} updateParam) {
-        return ${table.injectName}DAO.updateBy${table.findByIdKey.fUpperColumnName}(converter.toDto(updateParam));
+        return ${table.injectName}DAO.updateBy${table.findByIdKey.fUpperColumnName}(updateParam);
     }
 
     @Override
     public int insert(${table.beanName} ${table.injectName}) {
-
-        ${table.beanName}DO ${table.injectName}DO = converter.toDto(${table.injectName});
-
-        int num = ${table.injectName}DAO.insert(${table.injectName}DO);
-
-        if (num > 0) {
-            ${table.injectName}.setId(${table.injectName}DO.getId());
-        }
-
+        int num = ${table.injectName}DAO.insert(${table.injectName});
         return num;
     }
 
