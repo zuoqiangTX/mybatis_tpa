@@ -17,11 +17,11 @@ public class ${table.beanName}QueryFacadeImpl implements ${table.beanName}QueryF
     private ${table.beanName}DTOConverter converter;
 
     @Override
-    public Result<${table.beanName}DTO> findById(Long id) {
+    public Result<${table.beanName}DTO> findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName}) {
        try {
-			Assert.notNull(id, "编号不能为空");
+			Assert.notNull(${table.findByIdKey.fieldName}, "编号不能为空");
 
-			${table.beanName}DTO ${table.injectName}DTO = converter.toDto(${table.injectName}Service.findById(id));
+			${table.beanName}DTO ${table.injectName}DTO = converter.toDto(${table.injectName}Service.findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.fieldName}));
 			return Result.buildSucc(${table.injectName}DTO);
 		} catch (Exception ex) {
 			logger.warn("根据编号查询记录异常", ex);

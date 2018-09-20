@@ -46,6 +46,10 @@ public class Columns_List implements HttpController {
             Connection connection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + schema + "?useUnicode=true&characterEncoding=utf-8"
                     , userName, password);
             TableConfig tableConfig = getTable(connection, table);
+//            if(tableConfig.getPrimaryKey() == null) {
+//            	tableConfig.setAlterMsg("注意：表无主键信息，请先补全主键信息");
+//            }
+            
             connection.close();
             req.setAttribute("table", tableConfig);
             BASE64Encoder encoder = new BASE64Encoder();

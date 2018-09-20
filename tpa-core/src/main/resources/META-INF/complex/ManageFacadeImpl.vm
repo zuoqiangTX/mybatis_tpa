@@ -17,12 +17,12 @@ public class ${table.beanName}ManageFacadeImpl implements ${table.beanName}Manag
     private ${table.beanName}DTOConverter converter;
 
     @Override
-    public Result<Boolean> updateById(${table.beanName}DTO updateParam){
+    public Result<Boolean> updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName}DTO updateParam){
     	try {
 			Assert.notNull(updateParam, "待更新参数不能为空");
-			Assert.notNull(updateParam.getId(), "待更新记录编号不能为空");
+			Assert.notNull(updateParam.get${table.findByIdKey.fUpperColumnName}(), "待更新记录编号不能为空");
 
-			int updateResult = ${table.injectName}Service.updateById(converter.toModel(updateParam));
+			int updateResult = ${table.injectName}Service.updateBy${table.findByIdKey.fUpperColumnName}(converter.toModel(updateParam));
 			if (updateResult > 0) {
 				return Result.buildSucc(true);
 			} else {

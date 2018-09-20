@@ -1,8 +1,9 @@
 package com.tbjfund.frameword.tpa.maven;
 
-import com.tbjfund.framework.tpa.TemplateBuilder;
 import com.tbjfund.framework.tpa.config.TableConfig;
 import com.tbjfund.framework.tpa.scan.ClassPathScanner;
+import com.tbjfund.framework.tpa.template.TemplateBuilder;
+
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -134,47 +135,47 @@ public class Plugin extends AbstractMojo {
     }
 
     private void printMapper(TableConfig table) throws IOException {
-        String buffer = TemplateBuilder.build(table, TemplateBuilder.MAPPER);
-        printFile(buffer, table.getNamespace(), table.getTableName() + ".xml");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.Service);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "Service.java");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.ServiceImpl);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "ServiceImpl.java");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "Dao.java");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DAOImpl);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "DaoImpl.java");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.Query);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "Query.java");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DOConverter);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "DOConverter.java");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DO);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "DO.java");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.dtoModel);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "DTO.java");
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DTOConverter);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "DTOConverter.java");
-        
-        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacade);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "ManageFacade.java");
-        
-        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacadeImpl);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "ManageFacadeImpl.java");
-        
-        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacade);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "QueryFacade.java");
-        
-        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacadeImpl);
-        printFile(buffer, table.getNamespace(), table.getBeanName() + "QueryFacadeImpl.java");
+//        String buffer = TemplateBuilder.build(table, TemplateBuilder.MAPPER);
+//        printFile(buffer, table.getNamespace(), table.getTableName() + ".xml");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.Service);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "Service.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.ServiceImpl);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "ServiceImpl.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "Dao.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DAOImpl);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "DaoImpl.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.Query);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "Query.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DOConverter);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "DOConverter.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DO);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "DO.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.dtoModel);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "DTO.java");
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DTOConverter);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "DTOConverter.java");
+//        
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacade);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "ManageFacade.java");
+//        
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacadeImpl);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "ManageFacadeImpl.java");
+//        
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacade);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "QueryFacade.java");
+//        
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacadeImpl);
+//        printFile(buffer, table.getNamespace(), table.getBeanName() + "QueryFacadeImpl.java");
     }
 
     private void printFile(String buffer, String pkg,  String name) throws IOException {

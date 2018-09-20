@@ -1,15 +1,18 @@
 package com.tbjfund.framework.tpa;
 
-import com.tbjfund.framework.tpa.config.TableConfig;
-import com.tbjfund.framework.tpa.scan.ClassPathScanner;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.tbjfund.framework.tpa.config.TableConfig;
+import com.tbjfund.framework.tpa.scan.ClassPathScanner;
+import com.tbjfund.framework.tpa.template.ComplexTemplateBuilder;
+import com.tbjfund.framework.tpa.template.TemplateBuilder;
 
 /**
  * Created by sidawei on 16/4/16.
@@ -36,7 +39,7 @@ public class TpaSqlSessionFactoryBean extends SqlSessionFactoryBean {
         if (tables != null){
             for (TableConfig table : tables){
                 // todo log
-                mappers.put(table, TemplateBuilder.build(table, TemplateBuilder.MAPPER));
+                mappers.put(table, TemplateBuilder.build(table, ComplexTemplateBuilder.MAPPER));
             }
         }
 

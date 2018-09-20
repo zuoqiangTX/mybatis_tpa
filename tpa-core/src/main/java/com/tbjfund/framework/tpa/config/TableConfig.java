@@ -7,100 +7,132 @@ import java.util.List;
  */
 public class TableConfig {
 
-    // com.tbjfund.framework
-    private String packageName;
+	// 模型类型：简单模型只包含xml,dao,service,model；复杂模型包含分层中的DTO，convert等信息
+	// @see ModelType.java
+	private String modelType;
 
-    // UserManager
-    private String beanName;
+	// com.tbjfund.framework
+	private String packageName;
 
-    // userManager
-    private String injectName;
+	// UserManager
+	private String beanName;
 
-    // user_manager
-    private String tableName;
+	// userManager
+	private String injectName;
 
-    // com.tbjfund.framework.UserManager
-    private String namespace;
+	// user_manager
+	private String tableName;
 
-    // @Table(aliasName='')
-    private String typeAlisName;
+	// com.tbjfund.framework.UserManager
+	private String namespace;
 
-    private ColumnConfig primaryKey;
+	// @Table(aliasName='')
+	private String typeAlisName;
 
-    private List<ColumnConfig> columns;
+	private ColumnConfig primaryKey;
 
-    // comment
-    private String comment;
+	private ColumnConfig findByIdKey;
 
-    public String getNamespace() {
-        return namespace;
-    }
+	private List<ColumnConfig> columns;
 
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
+	// comment
+	private String comment;
 
-    public List<ColumnConfig> getColumns() {
-        return columns;
-    }
+	private String alterMsg;
 
-    public void setColumns(List<ColumnConfig> columns) {
-        this.columns = columns;
-    }
+	public String getNamespace() {
+		return namespace;
+	}
 
-    public String getTypeAlisName() {
-        return typeAlisName;
-    }
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+	}
 
-    public void setTypeAlisName(String typeAlisName) {
-        this.typeAlisName = typeAlisName;
-    }
+	public List<ColumnConfig> getColumns() {
+		return columns;
+	}
 
-    public String getTableName() {
-        return tableName;
-    }
+	public void setColumns(List<ColumnConfig> columns) {
+		this.columns = columns;
+	}
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
+	public String getTypeAlisName() {
+		return typeAlisName;
+	}
 
-    public ColumnConfig getPrimaryKey() {
-        return primaryKey;
-    }
+	public void setTypeAlisName(String typeAlisName) {
+		this.typeAlisName = typeAlisName;
+	}
 
-    public void setPrimaryKey(ColumnConfig primaryKey) {
-        this.primaryKey = primaryKey;
-    }
+	public String getTableName() {
+		return tableName;
+	}
 
-    public String getBeanName() {
-        return beanName;
-    }
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
 
-    public void setBeanName(String beanName) {
-        this.beanName = beanName;
-    }
+	public ColumnConfig getPrimaryKey() {
+		return primaryKey;
+	}
 
-    public String getPackageName() {
-        return packageName;
-    }
+	public void setPrimaryKey(ColumnConfig primaryKey) {
+		this.primaryKey = primaryKey;
+	}
 
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
-    }
+	public String getBeanName() {
+		return beanName;
+	}
 
-    public String getInjectName() {
-        return injectName;
-    }
+	public void setBeanName(String beanName) {
+		this.beanName = beanName;
+	}
 
-    public void setInjectName(String injectName) {
-        this.injectName = injectName;
-    }
+	public String getPackageName() {
+		return packageName;
+	}
 
-    public String getComment() {
-        return comment;
-    }
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+	public String getInjectName() {
+		return injectName;
+	}
+
+	public void setInjectName(String injectName) {
+		this.injectName = injectName;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getModelType() {
+		return modelType;
+	}
+
+	public void setModelType(String modelType) {
+		this.modelType = modelType;
+	}
+
+	public String getAlterMsg() {
+		return alterMsg;
+	}
+
+	public void setAlterMsg(String alterMsg) {
+		this.alterMsg = alterMsg;
+	}
+
+	public ColumnConfig getFindByIdKey() {
+		return findByIdKey;
+	}
+
+	public void setFindByIdKey(ColumnConfig findByIdKey) {
+		this.findByIdKey = findByIdKey;
+	}
 }

@@ -1,21 +1,27 @@
 
-import com.tbjfund.framework.tpa.TemplateBuilder;
-import com.tbjfund.framework.tpa.config.ColumnConfig;
-import com.tbjfund.framework.tpa.config.TableConfig;
-import com.tbjfund.framework.tpa.utils.StringUtils;
-import com.tbjfund.framework.tpa.webapp.service.JdbcTypeService;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedOutputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
+
+import org.apache.tools.zip.ZipEntry;
+import org.apache.tools.zip.ZipOutputStream;
+
+import com.tbjfund.framework.tpa.config.ColumnConfig;
+import com.tbjfund.framework.tpa.config.TableConfig;
+import com.tbjfund.framework.tpa.template.ComplexTemplateBuilder;
+import com.tbjfund.framework.tpa.template.TemplateBuilder;
+import com.tbjfund.framework.tpa.utils.StringUtils;
+import com.tbjfund.framework.tpa.webapp.service.JdbcTypeService;
 
 public class JavaCodeGenerator {
 
@@ -67,53 +73,57 @@ public class JavaCodeGenerator {
     }
 
     private static void printMapper(TableConfig table, ZipOutputStream out) throws IOException {
+    		
+    	ComplexTemplateBuilder builder = new ComplexTemplateBuilder();
+    	
+    	builder.builderMapper(table, out);
 
-        String buffer = TemplateBuilder.build(table, TemplateBuilder.MAPPER);
-        printFile(buffer, table.getTableName() + ".xml", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.model);
-        printFile(buffer, table.getBeanName() + ".java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.Service);
-        printFile(buffer, table.getBeanName() + "Service.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.ServiceImpl);
-        printFile(buffer, table.getBeanName() + "ServiceImpl.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO);
-        printFile(buffer, table.getBeanName() + "DAO.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DAOImpl);
-        printFile(buffer, table.getBeanName() + "DAOImpl.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DOConverter);
-        printFile(buffer, table.getBeanName() + "DOConverter.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.Query);
-        printFile(buffer, table.getBeanName() + "Query.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DO);
-        printFile(buffer, table.getBeanName() + "DO.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.dtoModel);
-        printFile(buffer, table.getBeanName() + "DTO.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.DTOConverter);
-        printFile(buffer, table.getBeanName() + "DTOConverter.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacade);
-        printFile(buffer, table.getBeanName() + "ManageFacade.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacadeImpl);
-        printFile(buffer, table.getBeanName() + "ManageFacadeImpl.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacade);
-        printFile(buffer, table.getBeanName() + "QueryFacade.java", out);
-
-        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacadeImpl);
-        printFile(buffer, table.getBeanName() + "QueryFacadeImpl.java", out);
-
-        out.flush();
+//        String buffer = TemplateBuilder.build(table, TemplateBuilder.MAPPER);
+//        printFile(buffer, table.getTableName() + ".xml", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.model);
+//        printFile(buffer, table.getBeanName() + ".java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.Service);
+//        printFile(buffer, table.getBeanName() + "Service.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.ServiceImpl);
+//        printFile(buffer, table.getBeanName() + "ServiceImpl.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DAO);
+//        printFile(buffer, table.getBeanName() + "DAO.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DAOImpl);
+//        printFile(buffer, table.getBeanName() + "DAOImpl.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DOConverter);
+//        printFile(buffer, table.getBeanName() + "DOConverter.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.Query);
+//        printFile(buffer, table.getBeanName() + "Query.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DO);
+//        printFile(buffer, table.getBeanName() + "DO.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.dtoModel);
+//        printFile(buffer, table.getBeanName() + "DTO.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.DTOConverter);
+//        printFile(buffer, table.getBeanName() + "DTOConverter.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacade);
+//        printFile(buffer, table.getBeanName() + "ManageFacade.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.ManageFacadeImpl);
+//        printFile(buffer, table.getBeanName() + "ManageFacadeImpl.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacade);
+//        printFile(buffer, table.getBeanName() + "QueryFacade.java", out);
+//
+//        buffer = TemplateBuilder.build(table, TemplateBuilder.QueryFacadeImpl);
+//        printFile(buffer, table.getBeanName() + "QueryFacadeImpl.java", out);
+//
+//        out.flush();
     }
 
     private static void printFile(String buffer, String name, ZipOutputStream out) throws IOException {
@@ -138,6 +148,7 @@ public class JavaCodeGenerator {
             for (ColumnConfig columnConfig : columns) {
                 if (columnConfig.isPrimaryKey()) {
                     tableConfig.setPrimaryKey(columnConfig);
+                    
                     break;
                 }
             }

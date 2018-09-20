@@ -1,14 +1,15 @@
-package 
 import java.util.List;
 
-public interface ${table.beanName}Service {
+
+public interface ${table.beanName}DAO {
+
 
     /**
      * 根据查询参数查询数据
      *
      * @param query 查询参数
      */
-    List<${table.beanName}> query(${table.beanName}Query query);
+    List<${table.beanName}DO> query(${table.beanName}Query query);
 
     /**
      * 根据查询参数查询数据总量
@@ -22,17 +23,18 @@ public interface ${table.beanName}Service {
      *
      * @param id 数据库ID
      */
-    ${table.beanName} findById(Long id);
+    ${table.beanName}DO findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName});
 
     /**
      * 根据id更新一调数据
      *
      * @param updateParam 更新参数
      */
-    int updateById(${table.beanName} updateParam);
+    int updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName}DO updateParam);
 
     /**
      * 新增一条记录
      */
-    int insert(${table.beanName} ${table.injectName});
+    int insert(${table.beanName}DO ${table.injectName}DO);
+
 }

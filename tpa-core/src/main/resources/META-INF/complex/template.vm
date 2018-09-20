@@ -5,12 +5,13 @@
 <mapper namespace="${table.namespace}">
 
     <resultMap id="BaseResultMap" type="${table.beanName}">
-        #foreach($column in $table.columns)#if($column.isPrimaryKey())
-        <id column="${column.columnName}"  property="${column.fieldName}"/>
-        #else
-        <result column="${column.columnName}"  property="${column.fieldName}"/>
-        #end
-    #end
+        #foreach($column in $table.columns)
+	        #if($column.isPrimaryKey())
+	        	<id column="${column.columnName}"  property="${column.fieldName}"/>
+	        #else
+	        	<result column="${column.columnName}"  property="${column.fieldName}"/>
+	        #end
+    	#end
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -20,27 +21,29 @@
     #end
     </sql>
 
-    <select id="FIND_BY_ID" parameterType="java.lang.Long" resultMap="BaseResultMap">
+	
+	<select id="FIND_BY_${table.findByIdKey.upperColumnName}" parameterType="${table.findByIdKey.findByIdMapperKeyType}" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List" />
         from
             ${table.tableName}
         where
-            id = #{id}
+            ${table.findByIdKey.columnName} = #{${table.findByIdKey.fieldName}}
     </select>
-
 
     <sql id="_sql_where">
     #foreach($column in $table.columns)
-        #if($column.javaType == 'java.lang.String')
-            #set($test= ${column.fieldName}+" != null and "+${column.fieldName}+" != '' ")
-        #else
-            #set($test= ${column.fieldName}+" != null")
-        #end
-        <if test="$test">
-            #set($value="#{"+$column.fieldName+"}")
-            and ${column.columnName}=${value}
-        </if>
+    	#if($column.whereParam)
+    		#if($column.javaType == 'java.lang.String')
+	            #set($test= ${column.fieldName}+" != null and "+${column.fieldName}+" != '' ")
+	        #else
+	            #set($test= ${column.fieldName}+" != null")
+	        #end
+	        <if test="$test">
+	            #set($value="#{"+$column.fieldName+"}")
+	            and ${column.columnName}=${value}
+	        </if>
+    	#end
     #end
     </sql>
 
@@ -55,7 +58,7 @@
         )
     </insert>
 
-    <update id="UPDATE_BY_ID" parameterType="${table.beanName}">
+    <update id="UPDATE_BY_${table.findByIdKey.upperColumnName}" parameterType="${table.beanName}">
         update
             ${table.tableName}
         <set>
@@ -75,7 +78,7 @@
         #end
         </set>
         where
-            id = #{id}
+            ${table.findByIdKey.columnName} = #{${table.findByIdKey.fieldName}}
     </update>
 
     <sql id="_select_limit">

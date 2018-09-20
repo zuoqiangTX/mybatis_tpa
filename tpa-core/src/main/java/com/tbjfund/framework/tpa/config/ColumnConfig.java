@@ -5,88 +5,149 @@ package com.tbjfund.framework.tpa.config;
  */
 public class ColumnConfig {
 
-    private boolean isPrimaryKey;
+	private boolean isPrimaryKey;
 
-    private String columnName;
+	private String findByIdMapperKeyType;
 
-    private String columnType;
+	private String findByIdJavaKeyType;
 
-    private String fieldName;
+	private String columnName;
+	
+	private String upperColumnName;
+	
+	private String fUpperColumnName;
 
-    private String javaType;
+	private String columnType;
 
-    private String SimpleJavaType;
+	private String fieldName;
 
-    private String comment;
+	private String javaType;
 
-    public ColumnConfig(boolean isPrimaryKey, String columnName, String fieldName) {
-        this.isPrimaryKey = isPrimaryKey;
-        this.columnName = columnName;
-        this.fieldName = fieldName;
-    }
+	private String SimpleJavaType;
 
-    public ColumnConfig(String columnName, String fieldName) {
-        this.columnName = columnName;
-        this.fieldName = fieldName;
-    }
+	private String comment;
 
-    public ColumnConfig() {
+	private String whereParam;
 
-    }
+	public ColumnConfig(boolean isPrimaryKey, String columnName, String fieldName) {
+		this.isPrimaryKey = isPrimaryKey;
+		this.columnName = columnName;
+		this.fieldName = fieldName;
+	}
 
-    public boolean isPrimaryKey() {
-        return isPrimaryKey;
-    }
+	public ColumnConfig(String columnName, String fieldName) {
+		this.columnName = columnName;
+		this.fieldName = fieldName;
+	}
 
-    public void setIsPrimaryKey(boolean isPrimaryKey) {
-        this.isPrimaryKey = isPrimaryKey;
-    }
+	public ColumnConfig() {
 
-    public String getColumnName() {
-        return columnName;
-    }
+	}
 
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
-    }
+	public boolean isPrimaryKey() {
+		return isPrimaryKey;
+	}
 
-    public String getFieldName() {
-        return fieldName;
-    }
+	public void setIsPrimaryKey(boolean isPrimaryKey) {
+		this.isPrimaryKey = isPrimaryKey;
+	}
 
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
+	public String getColumnName() {
+		return columnName;
+	}
 
-    public String getJavaType() {
-        return javaType;
-    }
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
+	}
 
-    public void setJavaType(String javaType) {
-        this.javaType = javaType;
-    }
+	public String getFieldName() {
+		return fieldName;
+	}
 
-    public String getSimpleJavaType() {
-        return SimpleJavaType;
-    }
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
+	}
 
-    public void setSimpleJavaType(String simpleJavaType) {
-        SimpleJavaType = simpleJavaType;
-    }
+	public String getJavaType() {
+		return javaType;
+	}
 
-    public String getColumnType() {
-        return columnType;
-    }
+	public void setJavaType(String javaType) {
+		this.javaType = javaType;
+	}
 
-    public void setColumnType(String columnType) {
-        this.columnType = columnType;
-    }
+	public String getSimpleJavaType() {
+		return SimpleJavaType;
+	}
 
-    public String getComment() {
-        return comment;
-    }
+	public void setSimpleJavaType(String simpleJavaType) {
+		SimpleJavaType = simpleJavaType;
+	}
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+	public String getColumnType() {
+		return columnType;
+	}
+
+	public void setColumnType(String columnType) {
+		this.columnType = columnType;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public void setFindByIdKeyInfo(String columnType) {
+		if ("BIGINT".equals(columnType) || "INTEGER".equals(columnType)) {
+			this.findByIdMapperKeyType = "java.lang.Long";
+			this.findByIdJavaKeyType = "Long";
+		} else {
+			this.findByIdMapperKeyType = "string";
+			this.findByIdJavaKeyType = "String";
+		}
+	}
+
+	public String getWhereParam() {
+		return whereParam;
+	}
+
+	public void setWhereParam(String whereParam) {
+		this.whereParam = whereParam;
+	}
+
+	public String getFindByIdMapperKeyType() {
+		return findByIdMapperKeyType;
+	}
+
+	public String getFindByIdJavaKeyType() {
+		return findByIdJavaKeyType;
+	}
+
+	public void setFindByIdMapperKeyType(String findByIdMapperKeyType) {
+		this.findByIdMapperKeyType = findByIdMapperKeyType;
+	}
+
+	public void setFindByIdJavaKeyType(String findByIdJavaKeyType) {
+		this.findByIdJavaKeyType = findByIdJavaKeyType;
+	}
+
+	public String getUpperColumnName() {
+		return upperColumnName;
+	}
+
+	public void setUpperColumnName(String upperColumnName) {
+		this.upperColumnName = upperColumnName;
+	}
+
+	public String getfUpperColumnName() {
+		return fUpperColumnName;
+	}
+
+	public void setfUpperColumnName(String fUpperColumnName) {
+		this.fUpperColumnName = fUpperColumnName;
+	}
+
 }

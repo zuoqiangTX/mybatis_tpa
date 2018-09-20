@@ -1,4 +1,3 @@
-package 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
@@ -29,23 +28,23 @@ public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${
     }
 
     @Override
-    public ${table.beanName}DO findById(Long id) {
+    public ${table.beanName}DO findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName}) {
 
-        Assert.notNull(id, "id不能为空");
+        Assert.notNull(${table.findByIdKey.fieldName}, "${table.findByIdKey.fieldName}不能为空");
 
-        return this.getSqlSession().selectOne("${table.namespace}.FIND_BY_ID", id);
+        return this.getSqlSession().selectOne("${table.namespace}.FIND_BY_${table.findByIdKey.upperColumnName}", ${table.findByIdKey.fieldName});
     }
 
     @Override
-    public int updateById(${table.beanName}DO updateParam) {
+    public int updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName}DO updateParam) {
 
         Assert.notNull(updateParam);
-        Assert.notNull(updateParam.getId(), "id不能为空");
+        Assert.notNull(updateParam.get${table.findByIdKey.fUpperColumnName}(), "${table.findByIdKey.fieldName}不能为空");
 
         updateParam.setCreateTime(null);
         updateParam.setModifyTime(new Date());
 
-        return this.getSqlSession().update("${table.namespace}.UPDATE_BY_ID", updateParam);
+        return this.getSqlSession().update("${table.namespace}.UPDATE_BY_${table.findByIdKey.upperColumnName}", updateParam);
     }
 
     @Override
