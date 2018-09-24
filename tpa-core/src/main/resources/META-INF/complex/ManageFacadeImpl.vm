@@ -16,12 +16,14 @@ public class ${table.beanName}ManageFacadeImpl implements ${table.beanName}Manag
     private ${table.beanName}DTOConverter converter;
 
     @Override
-    public Result<Boolean> updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName}DTO updateParam){
+    public Result<Boolean> updateByUnique(${table.beanName}DTO updateParam){
     	try {
 			Assert.notNull(updateParam, "待更新参数不能为空");
-			Assert.notNull(updateParam.get${table.findByIdKey.fUpperColumnName}(), "待更新记录编号不能为空");
+			#foreach($column in $table.uniques)
+			Assert.notNull(updateParamDO.get${column.fUpperfieldName}, "${column.fieldName}不能为空");		
+			#end
 
-			int updateResult = ${table.injectName}Service.updateBy${table.findByIdKey.fUpperColumnName}(converter.toModel(updateParam));
+			int updateResult = ${table.injectName}Service.updateByUnique(converter.toModel(updateParam));
 			if (updateResult > 0) {
 				return Result.buildSucc(true);
 			} else {

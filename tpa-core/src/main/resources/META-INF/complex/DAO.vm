@@ -3,6 +3,10 @@ import java.util.List;
 
 public interface ${table.beanName}DAO {
 
+	/**
+     * 新增一条记录
+     */
+    int insert(${table.beanName}DO ${table.injectName}DO);
 
     /**
      * 根据查询参数查询数据
@@ -19,22 +23,15 @@ public interface ${table.beanName}DAO {
     Integer count(${table.beanName}Query query);
 
     /**
-     * 根据ID查询
-     *
-     * @param id 数据库ID
+     * 根据唯一键查询
      */
-    ${table.beanName}DO findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName});
+    ${table.beanName}DO findByUnique(#foreach($column in $table.uniques) ${column.SimpleJavaType} ${column.fieldName} #if( $foreach.hasNext ),#end #end);
 
     /**
-     * 根据id更新一调数据
+     * 根据唯一键更新数据
      *
      * @param updateParam 更新参数
      */
-    int updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName}DO updateParam);
-
-    /**
-     * 新增一条记录
-     */
-    int insert(${table.beanName}DO ${table.injectName}DO);
+    int updateByUnique(${table.beanName}DO updateParamDO);
 
 }

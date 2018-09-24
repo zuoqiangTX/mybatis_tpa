@@ -1,5 +1,6 @@
 package com.tbjfund.framework.tpa.config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,9 @@ public class TableConfig {
 
 	private ColumnConfig primaryKey;
 
-	private ColumnConfig findByIdKey;
+	private List<ColumnConfig> uniques = new ArrayList<ColumnConfig>();
+	
+	private List<ColumnConfig> includes = new ArrayList<ColumnConfig>();
 
 	private List<ColumnConfig> columns;
 
@@ -128,11 +131,19 @@ public class TableConfig {
 		this.alterMsg = alterMsg;
 	}
 
-	public ColumnConfig getFindByIdKey() {
-		return findByIdKey;
+	public List<ColumnConfig> getUniques() {
+		return uniques;
 	}
 
-	public void setFindByIdKey(ColumnConfig findByIdKey) {
-		this.findByIdKey = findByIdKey;
+	public void setUniques(List<ColumnConfig> uniques) {
+		this.uniques = uniques;
+	}
+
+	public List<ColumnConfig> getIncludes() {
+		return includes;
+	}
+
+	public void setIncludes(List<ColumnConfig> includes) {
+		this.includes = includes;
 	}
 }

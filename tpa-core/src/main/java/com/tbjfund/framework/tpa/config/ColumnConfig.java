@@ -7,19 +7,15 @@ public class ColumnConfig {
 
 	private boolean isPrimaryKey;
 
-	private String findByIdMapperKeyType;
-
-	private String findByIdJavaKeyType;
+	private boolean isFindByUnique;
 
 	private String columnName;
-	
-	private String upperColumnName;
-	
-	private String fUpperColumnName;
 
 	private String columnType;
 
 	private String fieldName;
+	
+	private String fUpperfieldName;
 
 	private String javaType;
 
@@ -100,54 +96,28 @@ public class ColumnConfig {
 		this.comment = comment;
 	}
 
-	public void setFindByIdKeyInfo(String columnType) {
-		if ("BIGINT".equals(columnType) || "INTEGER".equals(columnType)) {
-			this.findByIdMapperKeyType = "java.lang.Long";
-			this.findByIdJavaKeyType = "Long";
-		} else {
-			this.findByIdMapperKeyType = "string";
-			this.findByIdJavaKeyType = "String";
-		}
-	}
-
 	public String getWhereParam() {
 		return whereParam;
+	}
+
+	public boolean isFindByUnique() {
+		return isFindByUnique;
+	}
+
+	public void setFindByUnique(boolean isFindByUnique) {
+		this.isFindByUnique = isFindByUnique;
 	}
 
 	public void setWhereParam(String whereParam) {
 		this.whereParam = whereParam;
 	}
 
-	public String getFindByIdMapperKeyType() {
-		return findByIdMapperKeyType;
+	public String getfUpperfieldName() {
+		return fUpperfieldName;
 	}
 
-	public String getFindByIdJavaKeyType() {
-		return findByIdJavaKeyType;
-	}
-
-	public void setFindByIdMapperKeyType(String findByIdMapperKeyType) {
-		this.findByIdMapperKeyType = findByIdMapperKeyType;
-	}
-
-	public void setFindByIdJavaKeyType(String findByIdJavaKeyType) {
-		this.findByIdJavaKeyType = findByIdJavaKeyType;
-	}
-
-	public String getUpperColumnName() {
-		return upperColumnName;
-	}
-
-	public void setUpperColumnName(String upperColumnName) {
-		this.upperColumnName = upperColumnName;
-	}
-
-	public String getfUpperColumnName() {
-		return fUpperColumnName;
-	}
-
-	public void setfUpperColumnName(String fUpperColumnName) {
-		this.fUpperColumnName = fUpperColumnName;
+	public void setfUpperfieldName(String fUpperfieldName) {
+		this.fUpperfieldName = fUpperfieldName;
 	}
 
 }

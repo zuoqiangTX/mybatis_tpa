@@ -9,15 +9,9 @@
 </head>
 <body>
 <style>
-    input{
-        width: 200px;
-    }
     table td,table th{
         padding: 2px
     }
-    input[type=checkbox] {
-	  zoom: 200%;
-	}
 </style>
 <h2><a href="/">Tpa-Generator</a></h2>
 <h4>[三]生成 In ${ip}:${port}/${schema}&nbsp;&nbsp;[<a href="tables?ip=${ip}&port=${port}&userName=${userName}&password=${password}&schema=${schema}">返回</a>]</h4>
@@ -44,8 +38,9 @@
                 <td>属性名</td>
                 <td>java类型</td>
                 <td>注释</td>
-                <td>findById</td>
+                <td>findByUnique</td>
                 <td>where条件</td>
+                <td>include/exclude</td>
             </tr>
         </thead>
         <c:forEach items="${table.columns}" var="column">
@@ -61,11 +56,14 @@
                 </td>
                 <td>
                 	<c:if test="${column.columnType == 'INTEGER' || column.columnType == 'BIGINT' || column.columnType == 'VARCHAR' }">
-                		<input type="radio" value="${column.fieldName}" name="findById" <c:if test="${column.primaryKey}">checked</c:if>></input>
+                		<input type="checkbox" name="${column.fieldName}.findByUnique" value="${column.fieldName}" <c:if test="${column.primaryKey}">checked</c:if>></input>
                 	</c:if>
                 </td>
                 <td>
-                	<input type="checkbox" name="${column.fieldName}.where" value="100" title="选择/不选择" <c:if test="${column.columnType == 'INTEGER' || column.columnType == 'BIGINT' || column.columnType == 'VARCHAR' }">checked</c:if>>
+                	<input type="checkbox" name="${column.fieldName}.where" value="${column.fieldName}" title="选择/不选择" checked ></input>
+                </td>
+                <td>
+                	<input type="checkbox" name="${column.fieldName}.include" value="${column.fieldName}" title="选择/不选择"></input>
                 </td>
             </tr>
         </c:forEach>

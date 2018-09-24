@@ -7,6 +7,12 @@ public class ${table.beanName}ServiceImpl implements ${table.beanName}Service {
 
     @Autowired
     private ${table.beanName}DAO ${table.injectName}DAO;
+    
+    @Override
+    public int insert(${table.beanName} ${table.injectName}) {
+        int num = ${table.injectName}DAO.insert(${table.injectName});
+        return num;
+    }
 
     @Override
     public List<${table.beanName}> query(${table.beanName}Query query) {
@@ -19,19 +25,13 @@ public class ${table.beanName}ServiceImpl implements ${table.beanName}Service {
     }
 
     @Override
-    public ${table.beanName} findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName}) {
-        return ${table.injectName}DAO.findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.fieldName});
+    public ${table.beanName} findByUnique(#foreach($column in $table.uniques) ${column.SimpleJavaType} ${column.fieldName} #if( $foreach.hasNext ),#end #end) {
+        return ${table.injectName}DAO.findByUnique(#foreach($column in $table.uniques) ${column.fieldName} #if( $foreach.hasNext ),#end #end);
     }
 
     @Override
-    public int updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName} updateParam) {
-        return ${table.injectName}DAO.updateBy${table.findByIdKey.fUpperColumnName}(updateParam);
-    }
-
-    @Override
-    public int insert(${table.beanName} ${table.injectName}) {
-        int num = ${table.injectName}DAO.insert(${table.injectName});
-        return num;
+    public int updateByUnique(${table.beanName} updateParam) {
+        return ${table.injectName}DAO.updateByUnique(updateParam);
     }
 
 }

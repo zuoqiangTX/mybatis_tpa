@@ -57,34 +57,40 @@ public class Download implements HttpController {
 			tableConfig.setModelType(ModelType.COMPLEX_MODEL);
 		}
 
-		String findById = req.getParameter("findById");
-
 		List<ColumnConfig> columnConfigs = tableConfig.getColumns();
 		if (columnConfigs != null) {
 			for (ColumnConfig c : columnConfigs) {
 				String javaFieldName = req.getParameter(c.getFieldName() + ".javaName");
 				String comment = req.getParameter(c.getFieldName() + ".comment");
 				String isWhere = req.getParameter(c.getFieldName() + ".where");
-				if (notBlank(javaFieldName)) {
-					c.setFieldName(javaFieldName);
-				}
-				if (notBlank(comment)) {
-					c.setComment(comment);
-				}
-				if (notBlank(isWhere)) {
-					c.setWhereParam(isWhere);
-				}
-
-				c.setUpperColumnName(c.getColumnName().toUpperCase());
-				c.setfUpperColumnName(c.getFieldName().substring(0, 1).toUpperCase() + c.getFieldName().substring(1));
+				String findByUnique = req.getParameter(c.getFieldName() + ".findByUnique");
+				String include = req.getParameter(c.getFieldName() + ".include");
+				
+				c.setfUpperfieldName(c.getFieldName().substring(0,1).toUpperCase()+c.getFieldName().substring(1));
 
 				if (c.isPrimaryKey()) {
 					tableConfig.setPrimaryKey(c);
 				}
 
-				if (javaFieldName.equals(findById)) {
-					tableConfig.setFindByIdKey(c);
-					c.setFindByIdKeyInfo(c.getColumnType());
+				if (notBlank(javaFieldName)) {
+					c.setFieldName(javaFieldName);
+				}
+
+				if (notBlank(comment)) {
+					c.setComment(comment);
+				}
+
+				if (notBlank(isWhere)) {
+					c.setWhereParam(isWhere);
+				}
+
+				if (notBlank(findByUnique)) {
+					c.setFindByUnique(true);
+					tableConfig.getUniques().add(c);
+				}
+				
+				if(notBlank(include)) {
+					tableConfig.getIncludes().add(c);
 				}
 			}
 		}

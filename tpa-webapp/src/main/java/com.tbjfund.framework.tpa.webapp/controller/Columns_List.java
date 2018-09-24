@@ -27,7 +27,6 @@ public class Columns_List implements HttpController {
     @Override
     public String service(final HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //resp.setCharacterEncoding("UTF-8");
         final String ip = req.getParameter("ip");
         final String port = req.getParameter("port");
         final String userName = req.getParameter("userName");
@@ -42,13 +41,9 @@ public class Columns_List implements HttpController {
         req.setAttribute("schema", schema);
 
         try {
-
             Connection connection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + schema + "?useUnicode=true&characterEncoding=utf-8"
                     , userName, password);
             TableConfig tableConfig = getTable(connection, table);
-//            if(tableConfig.getPrimaryKey() == null) {
-//            	tableConfig.setAlterMsg("注意：表无主键信息，请先补全主键信息");
-//            }
             
             connection.close();
             req.setAttribute("table", tableConfig);
@@ -79,6 +74,7 @@ public class Columns_List implements HttpController {
                 }
             }
         }
+        
         return tableConfig;
     }
 

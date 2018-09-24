@@ -16,11 +16,13 @@ public class ${table.beanName}QueryFacadeImpl implements ${table.beanName}QueryF
     private ${table.beanName}DTOConverter converter;
 
     @Override
-    public Result<${table.beanName}DTO> findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName}) {
+    public Result<${table.beanName}DTO> findByUnique(#foreach($column in $table.uniques) ${column.SimpleJavaType} ${column.fieldName} #if( $foreach.hasNext ),#end #end) {
        try {
-			Assert.notNull(${table.findByIdKey.fieldName}, "编号不能为空");
+			#foreach($column in $table.uniques)
+			Assert.notNull(${column.fieldName}, "${column.fieldName}不能为空");		
+			#end
 
-			${table.beanName}DTO ${table.injectName}DTO = converter.toDto(${table.injectName}Service.findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.fieldName}));
+			${table.beanName}DTO ${table.injectName}DTO = converter.toDto(${table.injectName}Service.findByUnique(#foreach($column in $table.uniques) ${column.fieldName} #if( $foreach.hasNext ),#end #end));
 			return Result.buildSucc(${table.injectName}DTO);
 		} catch (Exception ex) {
 			logger.warn("根据编号查询记录异常", ex);

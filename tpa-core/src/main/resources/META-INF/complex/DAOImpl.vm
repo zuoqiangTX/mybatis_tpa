@@ -8,10 +8,16 @@ import java.util.List;
 @Repository
 public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${table.beanName}DAO {
 
+	@Override
+    public int insert(${table.beanName}DO ${table.injectName}DO) {
+        ${table.injectName}DO.setCreateTime(new Date());
+        ${table.injectName}DO.setModifyTime(null);
+
+        return this.getSqlSession().insert("${table.namespace}.INSERT", ${table.injectName}DO);
+    }
 
     @Override
     public List<${table.beanName}DO> query(${table.beanName}Query query) {
-
         Assert.notNull(query);
 
         query.decorate();
@@ -21,50 +27,40 @@ public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${
 
     @Override
     public Integer count(${table.beanName}Query query) {
-
         Assert.notNull(query);
 
         return this.getSqlSession().selectOne("${table.namespace}.COUNT", query);
     }
 
     @Override
-    public ${table.beanName}DO findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName}) {
-
-        Assert.notNull(${table.findByIdKey.fieldName}, "${table.findByIdKey.fieldName}不能为空");
-
-        return this.getSqlSession().selectOne("${table.namespace}.FIND_BY_${table.findByIdKey.upperColumnName}", ${table.findByIdKey.fieldName});
+    public ${table.beanName}DO findByUnique(#foreach($column in $table.uniques) ${column.SimpleJavaType} ${column.fieldName} #if( $foreach.hasNext ),#end #end) {
+		#foreach($column in $table.uniques)
+			Assert.notNull(${column.fieldName}, "${column.fieldName}不能为空");		
+		#end
+		
+		#if($table.uniques.size()>1)
+			Map<String,Object> paramMap = new HashMap<String,Object>();
+			#foreach($column in $table.uniques)
+				paramMap.add("${column.fieldName}",${column.fieldName});
+			#end
+			
+			return this.getSqlSession().selectOne("${table.namespace}.FIND_BY_UNIQUE", paramMap);
+		#else
+			return this.getSqlSession().selectOne("${table.namespace}.FIND_BY_UNIQUE", ${table.uniques.get(0).fieldName});
+		#end
     }
 
     @Override
-    public int updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName}DO updateParam) {
+    public int updateByUnique(${table.beanName}DO updateParamDO) {
+        Assert.notNull(updateParamDO,"更新参数不能为空");
+        #foreach($column in $table.uniques)
+			Assert.notNull(updateParamDO.get${column.fUpperfieldName}, "${column.fieldName}不能为空");		
+		#end
 
-        Assert.notNull(updateParam);
-        Assert.notNull(updateParam.get${table.findByIdKey.fUpperColumnName}(), "${table.findByIdKey.fieldName}不能为空");
+        updateParamDO.setCreateTime(null);
+        updateParamDO.setModifyTime(new Date());
 
-        updateParam.setCreateTime(null);
-        updateParam.setModifyTime(new Date());
-
-        return this.getSqlSession().update("${table.namespace}.UPDATE_BY_${table.findByIdKey.upperColumnName}", updateParam);
+        return this.getSqlSession().update("${table.namespace}.UPDATE_BY_UNIQUE", updateParamDO);
     }
-
-    @Override
-    public int insert(${table.beanName}DO ${table.injectName}DO) {
-
-        checkParamForInsert(${table.injectName}DO);
-
-        ${table.injectName}DO.setCreateTime(new Date());
-        ${table.injectName}DO.setModifyTime(null);
-
-        return this.getSqlSession().insert("${table.namespace}.INSERT", ${table.injectName}DO);
-    }
-
-    private void checkParamForInsert(${table.beanName}DO ${table.injectName}DO) {
-
-        Assert.notNull(${table.injectName}DO);
-
-        //TODO check code
-
-    }
-
 
 }

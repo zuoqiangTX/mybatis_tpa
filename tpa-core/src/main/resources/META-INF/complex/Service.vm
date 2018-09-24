@@ -21,14 +21,14 @@ public interface ${table.beanName}Service {
      *
      * @param id 数据库ID
      */
-    ${table.beanName} findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName});
+    ${table.beanName} findByUnique(#foreach($column in $table.uniques) ${column.SimpleJavaType} ${column.fieldName} #if( $foreach.hasNext ),#end #end);
 
     /**
      * 根据id更新一调数据
      *
      * @param updateParam 更新参数
      */
-    int updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName} updateParam);
+    int updateByUnique(${table.beanName} updateParam);
 
     /**
      * 新增一条记录

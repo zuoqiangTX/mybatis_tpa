@@ -18,4 +18,11 @@ public class ${table.beanName}Query extends Query implements Serializable {
     private ${column.SimpleJavaType} ${column.fieldName};
 #end
 
+#foreach($column in $table.includes)
+
+	private List<${column.SimpleJavaType}> include${column.fUpperfieldName}List;
+	
+	private List<${column.SimpleJavaType}> exclude${column.fUpperfieldName}List;
+#end
+
 }

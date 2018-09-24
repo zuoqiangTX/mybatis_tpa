@@ -7,7 +7,7 @@ public interface ${table.beanName}QueryFacade {
      *
      * @param id 数据库ID
      */
-    Result<${table.beanName}DTO> findBy${table.findByIdKey.fUpperColumnName}(${table.findByIdKey.findByIdJavaKeyType} ${table.findByIdKey.fieldName});
+    Result<${table.beanName}DTO> findByUnique(#foreach($column in $table.uniques) ${column.SimpleJavaType} ${column.fieldName} #if( $foreach.hasNext ),#end #end);
 
     /**
      * 根据查询参数查询数据
