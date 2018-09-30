@@ -54,7 +54,7 @@ public class ${table.beanName}DAOImpl extends SqlSessionDaoSupport implements ${
     public int updateByUnique(${table.beanName}DO updateParamDO) {
         Assert.notNull(updateParamDO,"更新参数不能为空");
         #foreach($column in $table.uniques)
-			Assert.notNull(updateParamDO.get${column.fUpperfieldName}, "${column.fieldName}不能为空");		
+			Assert.notNull(updateParamDO.get${column.fUpperfieldName}(), "${column.fieldName}不能为空");		
 		#end
 
         updateParamDO.setCreateTime(null);

@@ -20,7 +20,7 @@ public class ${table.beanName}ManageFacadeImpl implements ${table.beanName}Manag
     	try {
 			Assert.notNull(updateParam, "待更新参数不能为空");
 			#foreach($column in $table.uniques)
-			Assert.notNull(updateParamDO.get${column.fUpperfieldName}, "${column.fieldName}不能为空");		
+			Assert.notNull(updateParam.get${column.fUpperfieldName}(), "${column.fieldName}不能为空");		
 			#end
 
 			int updateResult = ${table.injectName}Service.updateByUnique(converter.toModel(updateParam));

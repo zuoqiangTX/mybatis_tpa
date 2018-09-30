@@ -7,7 +7,7 @@ public interface ${table.beanName}ManageFacade {
      *
      * @param updateParam 更新参数
      */
-    Result<Boolean> updateBy${table.findByIdKey.fUpperColumnName}(${table.beanName}DTO updateParam);
+    Result<Boolean> updateByUnique(${table.beanName}DTO updateParam);
 
     /**
      * 新增一条记录
